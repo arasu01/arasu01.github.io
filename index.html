@@ -4,7 +4,6 @@
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -15,8 +14,10 @@
       <meta name="author" content="">
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" href="css/style.css">
       <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
       <!-- fevicon -->
@@ -29,6 +30,8 @@
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
       <style>
          body {
              font-family: Arial, sans-serif;
@@ -93,7 +96,6 @@
                         <li class="active"><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="products.html">Our Products</a></li>
-                        <li><a href="shop.html">Shop</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                         <!-- <li><a href="#"><img src="images/search-icon.png"></a></li>
                         <li><a href="#"><img src="images/user-icon.png"></a></li> -->
@@ -103,7 +105,6 @@
                               <a href="index.html">Home</a>
                               <a href="about.html">About</a>
                               <a href="products.html">Our Products</a>
-                              <a href="shop.html">Shop</a>
                               <a href="contact.html">Contact Us</a>
                            </div>
                         </div>
@@ -209,24 +210,28 @@
          <div class="gifts_section layout_padding">
             <div class="container">
                <h1 class="ourgifts_text">Our Products</h1>
-               <p class="lorem_text">irst true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore alw</p>
+               <p class="lorem_text">🌸 Bridal Bangles 🌸 Silk Thread Bangles</p>                     
+               <p class="lorem_text">🌸 Kundan Bangles 🌸 Hair Bands</p>                    
+               <p class="lorem_text">🌸 Finger Rings 🌸 Saree Pins</p>
+               <p class="lorem_text">🌸 Center Clips 🌸 Kids Bangles</p>                     
+               <p class="lorem_text">🌸 Name Bangles 🌸 Return Gifts for All Occasions</p>
                <div class="gifts_section_2">
                   <div class="row">
                      <div class="col-md-6">
-                        <div class="img_5"><img src="images/img-5.png"></div>
+                        <div class="img_5"><img src="images/product-1.png"></div>
                         <div class="volis_main">
                            <div class="volis_2">
-                              <h1 class="volis_text">Volis  <span style="color: #1cb2d2;">$60</span></h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majo</p>
+                              <h1 class="volis_text">Silk Thread Bangle</h1>
+                              <p class="there_text">Delicately designed bangles made with vibrant silk threads. Ideal for adding a touch of color and sophistication to any outfit.</p>
                            </div>
                         </div>
                      </div>
                      <div class="col-md-6">
-                        <div class="img_5"><img src="images/img-6.png"></div>
+                        <div class="img_5"><img src="images/product-2.png"></div>
                         <div class="volis_main">
                            <div class="volis_2">
-                              <h1 class="volis_text">Volis  <span style="color: #1cb2d2;">$60</span></h1>
-                              <p class="there_text">There are many variations of passages of Lorem Ipsum available, but the majo</p>
+                              <h1 class="volis_text">Silk Thread Bangle</span></h1>
+                              <p class="there_text">Delicately designed bangles made with vibrant silk threads. Ideal for adding a touch of color and sophistication to any outfit.</p>
                            </div>
                         </div>
                      </div>
@@ -238,26 +243,6 @@
             </div>
          </div>
          <!-- gifts section end -->
-         <!-- shop section start -->
-         <div class="container-fluid">
-            <div class="shop_section layout_padding">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="shop_img"><img src="images/img-7.png"></div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="shop_taital">
-                        <h1 class="shop_text">Our Shop</h1>
-                        <p class="ipsum_text">irst true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore alw</p>
-                        <p class="ipsum_text">irst true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore alw</p>
-                        <div class="red_more_bt"><a href="#">Read More</a></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- shop section end -->
-      </div>
       <!-- contact section start -->
       <div class="contact_section layout_padding">
          <div class="contact_bg">
@@ -376,6 +361,18 @@
          function closeNav() {
          document.getElementById("myNav").style.width = "0%";
          }
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('[data-fancybox]').fancybox({
+               afterLoad: function(instance, current) {
+                  var fancyboxInstance = $.fancybox.getInstance();
+                  if (fancyboxInstance) {
+                     // Your code using fancyboxInstance
+                  }
+               }
+            });
+         });
       </script>
    </body>
 </html>
