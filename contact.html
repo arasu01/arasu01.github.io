@@ -29,6 +29,51 @@
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <style>
+         body {
+             font-family: Arial, sans-serif;
+             background-color: #f8f8f8;
+             color: #333;
+             margin: 0;
+             padding: 0;
+         }
+         h1 {
+             color: #444;
+             font-size: 28px;
+             text-align: center;
+             margin-bottom: 20px;
+         }
+         p {
+             font-size: 16px;
+             line-height: 1.6;
+             margin-bottom: 20px;
+         }
+         label {
+             display: block;
+             margin-bottom: 5px;
+             font-weight: bold;
+         }
+         input, textarea {
+             width: 100%;
+             padding: 10px;
+             margin-bottom: 20px;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+         }
+         button {
+             width: 100%;
+             padding: 10px;
+             background-color: #28a745;
+             color: #fff;
+             border: none;
+             border-radius: 4px;
+             font-size: 16px;
+             cursor: pointer;
+         }
+         button:hover {
+             background-color: #218838;
+         }
+     </style>
    </head>
    <body>
       <!--header section start -->
@@ -39,7 +84,7 @@
                   <span  style="font-size:33px;cursor:pointer; color: #ffffff;" onclick="openNav()"><img src="images/toggle-menu.png" class="toggle_menu"></span>
                </div>
                <div class="col-sm-6 col-lg-2">
-                  <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+                  <!-- <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div> -->
                </div>
                <div class="col-sm-8">
                   <div class="menu_text">
@@ -49,8 +94,8 @@
                         <li><a href="products.html">Our Products</a></li>
                         <li><a href="shop.html">Shop</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#"><img src="images/search-icon.png"></a></li>
-                        <li><a href="#"><img src="images/user-icon.png"></a></li>
+                        <!-- <li><a href="#"><img src="images/search-icon.png"></a></li>
+                        <li><a href="#"><img src="images/user-icon.png"></a></li> -->
                         <div id="myNav" class="overlay">
                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                            <div class="overlay-content">
@@ -79,19 +124,30 @@
          <div class="contact_bg">
             <div class="container-fluid">
                <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 center">
                      <div class="form_main">
-                        <div class="call_text"><img src="images/call-icon.png"><span class="address_text">Phone :  +(91) 9360235889</span></div>
-                        <div class="call_text"><img src="images/email-icon.png"><span class="address_text">Email : gayathriarasuvel@gmail.com</span></div>
+                        <div class="container">
+                           <h1>Contact Us</h1>
+                           <p>If you have any questions or need further assistance, please feel free to contact us. We are here to help!</p>
+                           
+                           <form action="#" method="post">
+                               <label for="name">Your Name</label>
+                               <input type="text" id="name" name="name" required>
+                               
+                               <label for="email">Your Email</label>
+                               <input type="email" id="email" name="email" required>
+                               
+                               <label for="message">Your Message</label>
+                               <textarea id="message" name="message" rows="4" required></textarea>
+                               
+                               <button type="submit">Submit</button>
+                           </form>
+                       </div>
                      </div>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 center">
                      <div class="form_main">
-                        <h1 class="contact_text">Contact Us</h1>
-                        <input type="text" class="from_text" placeholder="Name" name="Name">
-                        <input type="text" class="from_text" placeholder="Phone Number" name="PhoneNumber">
-                        <textarea class="description_text" placeholder="Description" name="Description"></textarea>
-                        <button type="submit" class="submit_button">Submit</button>
+                        <div class="footer-img"><img src="images/contact_us.png" style="width: 100%;"></div>
                      </div>
                   </div>
                </div>
@@ -135,12 +191,12 @@
             </div>
          </div>
       </div>
-      </div>
+
       <!-- section footer end -->
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright">2024 All Rights Reserved. <a href="https://html.design">Free html  Templates</a></p>
+            <p class="copyright">2024 All Rights Reserved.</p>
          </div>
       </div>
       <!-- Javascript files-->
