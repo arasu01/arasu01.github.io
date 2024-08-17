@@ -1,0 +1,32 @@
+/* whatsapp chat css start */
+.social-chat-icons {
+    position: fixed;
+    inset-inline-end: 2%;
+    inset-block-end: 80px;
+    z-index: 9;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.social-chat-icons.active {
+    inset-block-end: 9.375rem;
+}
+
+.chat-image-shadow {
+    filter: drop-shadow(0 0 0.35rem rgba(var(--bs-primary-rgb), 0.3));
+}
+
+.lightbox-image {
+    max-height: 80vh;
+    vertical-align: middle;
+}
+
+.img-w-h-100 {
+    max-height: 6.25rem;
+    width: 6.25rem;
+    height: 100%;
+    max-width: 100%;
+}
+/* whatsapp chat css end */
