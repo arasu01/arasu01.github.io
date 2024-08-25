@@ -695,6 +695,7 @@ button {
     font-size: 12pt;
     color: #ebebeb;
     padding-left: 16px;
+    display: inline-block;
 }
 
 .adderess_text {
