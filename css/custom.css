@@ -105,3 +105,32 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.width--16rem {
+    --width: 16rem;
+}
+
+.minWidth-12rem {
+    --minWidth: 12rem;
+}
+
+.width--15 {
+    --width: 15rem;
+}
+.width--100 {
+    --width: 100%;
+}
+.width--80 {
+    --width: 80%;
+}
+
+.height-26-5-rem {
+    --height: 26.5rem;
+}
+.height-12-5-rem {
+    --height: 12.5rem;
+}
+
+.aspect-1 {
+    aspect-ratio: 1 !important;
+}
