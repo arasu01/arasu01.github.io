@@ -1,0 +1,7 @@
+# Ensure the RewriteEngine is on
+RewriteEngine On
+
+# Rewrite rule to map /new-page.html to /html/new-page.html
+RewriteRule ^about\.html$ /html/about.html
+RewriteRule ^contact\.html$ /html/contact.html
+RewriteRule ^products\.html$ /html/products.html [L]
