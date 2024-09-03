@@ -1410,3 +1410,16 @@ button {
         transform: translateX(10%);  /* Move to right outside the container */
     }
 }
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.social-icons a {
+    color: #f0f0f0;
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+.social-icons a:hover {
+    color: #1da1f2; /* Example hover color for Twitter */
+}
