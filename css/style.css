@@ -1383,3 +1383,30 @@ button {
 .gap-30 {
     gap: 1.875rem !important;
 }
+.announcementColor {
+    background-color: #006242;
+    color: #fffeff;
+    height: 50px;
+ }
+ .scrolling-text-container {
+    width: 100%;  /* Width of the container */
+    overflow: hidden;  /* Hide the overflow */
+    white-space: nowrap;  /* Prevent text from wrapping */
+    box-sizing: border-box; /* Include padding and border in the element's width and height */
+    border: 1px solid #ccc;  /* Optional: Border around the container */
+}
+
+.scrolling-text {
+    display: inline-block;  /* Make the text an inline block element */
+    padding-left: 100%;  /* Start position outside the container */
+    animation: scrollText 10s linear infinite;  /* Animation duration and type */
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(-100%);  /* Start from left outside the container */
+    }
+    100% {
+        transform: translateX(10%);  /* Move to right outside the container */
+    }
+}
