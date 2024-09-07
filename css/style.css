@@ -1404,10 +1404,10 @@ button {
 
 @keyframes scrollText {
     0% {
-        transform: translateX(-100%);  /* Start from left outside the container */
+        transform: translateX(10%);  /* Start from right outside the container */
     }
     100% {
-        transform: translateX(10%);  /* Move to right outside the container */
+        transform: translateX(-100%);  /* Move to left outside the container */
     }
 }
 .social-icons {
@@ -1422,4 +1422,24 @@ button {
 }
 .social-icons a:hover {
     color: #1da1f2; /* Example hover color for Twitter */
+}
+  
+.py-5 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Style for the contact items */
+.items-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust gap between icon and text */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+}
+
+/* Optional: Add some padding and margin for better spacing */
+.items-contact span {
+    padding: 5px;
+    margin: 0;
 }
