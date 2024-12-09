@@ -1398,7 +1398,7 @@ button {
 .scrolling-text {
     display: inline-block;  /* Make the text an inline block element */
     padding-left: 100%;  /* Start position outside the container */
-    animation: scrollText 10s linear infinite;  /* Animation duration and type */
+    animation: scrollText 20s linear infinite;  /* Animation duration and type */
 }
 
 @keyframes scrollText {
