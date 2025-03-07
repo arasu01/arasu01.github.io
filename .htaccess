@@ -5,3 +5,7 @@ RewriteEngine On
 RewriteRule ^about\.html$ /html/about.html
 RewriteRule ^contact\.html$ /html/contact.html
 RewriteRule ^products\.html$ /html/products.html [L]
+
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=16070400; includeSubDomains; preload"
+</IfModule>
