@@ -97,6 +97,124 @@
       button:hover {
          background-color: #218838;
       }
+
+      /* Product Grid Styling - FORCE FULL WIDTH */
+      body .grid-container,
+      html body .grid-container {
+          padding: 2rem 0;
+          background: #f9f9f9;
+          min-height: 200px;
+          width: 100vw !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          box-sizing: border-box;
+          position: relative;
+          left: 0;
+          right: 0;
+      }
+
+      body #products-container,
+      html body #products-container {
+          display: grid !important;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+          gap: 1.5rem !important;
+          padding: 1rem !important;
+          background: #fff !important;
+          min-height: 150px !important;
+          width: calc(100vw - 2rem) !important;
+          max-width: calc(100vw - 2rem) !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+      }
+
+      .product {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          background: #fff;
+          overflow: hidden;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          padding: 1rem;
+          min-height: 250px;
+      }
+
+      .product:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          border-color: #ccc;
+      }
+
+      .product__top {
+          width: 100%;
+          height: 150px;
+          margin-bottom: 1rem;
+          overflow: hidden;
+          border-radius: 6px;
+      }
+
+      .product__thumbnail {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .product__thumbnail img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+          border-radius: 6px;
+      }
+
+      .product:hover .product__thumbnail img {
+          transform: scale(1.05);
+      }
+
+      .product__summary {
+          text-align: center;
+      }
+
+      .product__title {
+          font-size: 1rem;
+          margin: 0.5rem 0;
+          color: #333;
+          font-weight: 600;
+      }
+
+      .text-muted.fs-12 {
+          color: #666;
+          font-size: 0.875rem;
+          margin-bottom: 0.5rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+          #products-container {
+              grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+              gap: 1rem !important;
+              padding: 0.5rem !important;
+          }
+          
+          .product__top {
+              height: 120px;
+          }
+      }
+
+      @media (max-width: 480px) {
+          #products-container {
+              grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+              gap: 0.75rem !important;
+          }
+          
+          .product__top {
+              height: 100px;
+          }
+          
+          .product__title {
+              font-size: 0.75rem;
+          }
+      }
    </style>
    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
       crossorigin="anonymous"></script>
@@ -122,6 +240,9 @@
     <!-- Start of HubSpot Embed Code -->
    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
    <!-- End of HubSpot Embed Code -->
+   <!-- Add preload for critical resources -->
+   <link rel="preload" href="../css/bootstrap.min.css" as="style">
+   <link rel="preload" href="../js/jquery.min.js" as="script">
 </head>
 
 <body>
@@ -190,15 +311,11 @@
           <h1 class="center_text" style="width: 75%">HAIR CLIPS</span></h1>
       </div>
   </div>
-   <!-- bangles section end -->
-   <div class="flexible-grid lg-down-1 gap-3 grid-container">
-      <div id="ajax-products-view">
-         <div class="auto-col gap-3 mobile_two_items minWidth-12rem" style="--maxWidth:1fr">
-            <div id="products-container"></div>
-         </div>
-      </div>
+   <!-- clips section start -->
+   <div class="grid-container">
+      <div id="products-container"></div>
    </div>
-   <!-- bangles section end -->
+   <!-- clips section end -->
    <!-- section footer start -->
    <div class="section_footer" itemscope itemtype="http://schema.org/Organization">
       <div class="container">
@@ -384,7 +501,7 @@
       <!-- End of HubSpot Embed Code -->
       
       <script>
-         // Clips List
+         // Hair Clips Product List
          const products = [
             { id: 1, name: "Hair Clips - 1", image: "../images/clips/1.jpg" },
             { id: 2, name: "Hair Clips - 2", image: "../images/clips/2.jpg" },
@@ -437,29 +554,58 @@
             { id: 49, name: "Hair Clips - 49", image: "../images/clips/49.jpg" },
          ];
 
-         // Container to hold product cards
-         const container = document.getElementById("products-container");
+         // Function to generate products
+         function generateProducts() {
+            const container = document.getElementById("products-container");
+            if (!container) {
+                console.error("Products container not found!");
+                return;
+            }
 
-         // Loop through products and generate HTML
-         for (let product of products) {
-            const productHTML = `
-                  <div class="product border rounded text-center d-flex flex-column gap-10">
-                    <div class="product__top width--100 height-12-5-rem aspect-1">
-                      <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
-                        <img src="${product.image}" loading="lazy" class="dark-support rounded" alt="${product.name}">
-                      </div>
+            // Force full width programmatically to ensure it works
+            const containerParent = container.parentElement;
+            container.style.width = window.innerWidth + 'px';
+            container.style.maxWidth = window.innerWidth + 'px';
+            containerParent.style.width = window.innerWidth + 'px';
+            containerParent.style.maxWidth = window.innerWidth + 'px';
+
+            // Generate HTML for all products
+            const productsHTML = products.map(product => `
+                <div class="product">
+                    <div class="product__top">
+                        <div class="product__thumbnail">
+                            <img src="${product.image}" 
+                                 loading="lazy" 
+                                 alt="${product.name}"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
+                        </div>
                     </div>
-                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
-                      <div class="text-muted fs-12">
-                        Hair Clips
-                      </div>
-                      <h6 class="product__title text-truncate width--80">${product.name}</h6>
+                    <div class="product__summary">
+                        <div class="text-muted fs-12">Hair Clips</div>
+                        <h6 class="product__title">${product.name}</h6>
                     </div>
-                  </div>
-                `;
-            // Append the product card to the container
-            container.innerHTML += productHTML;
+                </div>
+            `).join('');
+
+            // Set all HTML at once
+            container.innerHTML = productsHTML;
          }
+
+         // Wait for DOM to be fully loaded
+         if (document.readyState === 'loading') {
+             document.addEventListener('DOMContentLoaded', generateProducts);
+         } else {
+             generateProducts();
+         }
+
+         // Also ensure it works after window load
+         window.addEventListener('load', function() {
+             const container = document.getElementById("products-container");
+             if (container && !container.innerHTML) {
+                 generateProducts();
+             }
+         });
       </script>
       <!--Email Obfuscation-->
       <script>
