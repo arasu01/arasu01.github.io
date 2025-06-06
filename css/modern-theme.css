@@ -441,6 +441,199 @@ button, .modern-btn, .btn, [role="button"] {
    box-shadow: var(--shadow-hover);
 }
 
+/* Header Section Enhancements */
+.header_section {
+   background: var(--primary-gradient) !important;
+   box-shadow: 0 2px 20px rgba(102, 126, 234, 0.15);
+   position: relative;
+   transition: var(--transition);
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header_section::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+   opacity: 0.1;
+   pointer-events: none;
+}
+
+.header_section .container-fluid,
+.header_section .row,
+.header_section .menu_text {
+   position: relative;
+   z-index: 2;
+}
+
+.header_bg {
+   background: var(--primary-gradient) !important;
+}
+
+/* Modern Menu Text Styling */
+.header_section .menu_text li a {
+   color: var(--white) !important;
+   font-weight: 500;
+   transition: var(--transition);
+   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+   border-radius: 8px;
+   padding: 0.5rem 1rem !important;
+   margin: 0 0.2rem;
+}
+
+.header_section .menu_text li a:hover {
+   background: rgba(255, 255, 255, 0.15);
+   color: var(--white) !important;
+   transform: translateY(-2px);
+   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.header_section .menu_text li.active a {
+   background: rgba(255, 255, 255, 0.2);
+   color: var(--white) !important;
+   font-weight: 600;
+}
+
+.header_section .toggle_menu {
+   filter: brightness(0) invert(1);
+   transition: var(--transition);
+}
+
+.header_section .toggle_menu:hover {
+   transform: scale(1.1);
+}
+
+/* Mobile Menu Overlay Enhancements */
+.overlay {
+   background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%) !important;
+   backdrop-filter: blur(10px);
+}
+
+.overlay-content a {
+   color: var(--white) !important;
+   font-weight: 500;
+   transition: var(--transition);
+   border-radius: 8px;
+   padding: 1rem 2rem !important;
+   margin: 0.5rem 0;
+   display: inline-block !important;
+}
+
+.overlay-content a:hover {
+   background: rgba(255, 255, 255, 0.15);
+   transform: translateX(10px);
+}
+
+.overlay .closebtn {
+   color: var(--white) !important;
+   transition: var(--transition);
+}
+
+.overlay .closebtn:hover {
+   transform: rotate(90deg);
+   color: #ff6b6b !important;
+}
+
+/* Responsive Header Adjustments */
+@media (max-width: 768px) {
+   .header_section {
+      padding: 10px 0;
+   }
+   
+   .header_section .menu_text li a {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem !important;
+   }
+}
+
+/* Copyright Section Enhancements */
+.copyright_section {
+   background: var(--primary-gradient) !important;
+   position: relative;
+   padding: 2rem 0;
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   transition: var(--transition);
+}
+
+.copyright_section::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+   opacity: 0.1;
+   pointer-events: none;
+}
+
+.copyright_section .container {
+   position: relative;
+   z-index: 2;
+}
+
+.copyright {
+   color: var(--white) !important;
+   font-size: 1rem !important;
+   font-weight: 500 !important;
+   text-align: center !important;
+   margin: 0 !important;
+   letter-spacing: 0.5px;
+   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+   transition: var(--transition);
+}
+
+.copyright a {
+   color: var(--white) !important;
+   text-decoration: none;
+   transition: var(--transition);
+}
+
+.copyright a:hover {
+   color: rgba(255, 255, 255, 0.8) !important;
+   text-decoration: underline;
+}
+
+/* Modern Copyright with Enhanced Design */
+.copyright_section:hover {
+   background: linear-gradient(135deg, #5a73e8 0%, #6c5fb5 100%);
+}
+
+.copyright_section:hover .copyright {
+   transform: translateY(-1px);
+}
+
+/* Add subtle border and shadow effects */
+.copyright_section {
+   box-shadow: 0 -5px 20px rgba(102, 126, 234, 0.1);
+}
+
+/* Responsive Copyright Design */
+@media (max-width: 768px) {
+   .copyright_section {
+      padding: 1.5rem 0;
+   }
+   
+   .copyright {
+      font-size: 0.9rem !important;
+      line-height: 1.5;
+   }
+}
+
+@media (max-width: 480px) {
+   .copyright_section {
+      padding: 1.2rem 0;
+   }
+   
+   .copyright {
+      font-size: 0.85rem !important;
+      letter-spacing: 0.3px;
+   }
+}
+
 /* Footer Enhancements */
 .section_footer.modern {
    background: var(--primary-gradient);
