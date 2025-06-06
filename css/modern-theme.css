@@ -1,0 +1,464 @@
+/* Modern Theme CSS - Inspired by Contact Page Design */
+
+/* Root Variables for Consistent Theming */
+:root {
+   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   --primary-color: #667eea;
+   --secondary-color: #764ba2;
+   --accent-color: #e9bbeb;
+   --text-dark: #333;
+   --text-light: #666;
+   --bg-light: #f8f9fa;
+   --white: #ffffff;
+   --border-light: #e1e5e9;
+   --shadow-light: 0 10px 30px rgba(0,0,0,0.1);
+   --shadow-medium: 0 20px 60px rgba(0,0,0,0.1);
+   --shadow-hover: 0 10px 30px rgba(102, 126, 234, 0.4);
+   --border-radius: 12px;
+   --border-radius-large: 20px;
+   --transition: all 0.3s ease;
+}
+
+/* Modern Hero Sections */
+.modern-hero {
+   background: var(--primary-gradient);
+   color: var(--white);
+   padding: 4rem 0;
+   text-align: center;
+   position: relative;
+   overflow: hidden;
+}
+
+.modern-hero::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+   opacity: 0.1;
+}
+
+.modern-hero h1 {
+   font-size: 3rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+   position: relative;
+   z-index: 1;
+}
+
+.modern-hero p {
+   font-size: 1.2rem;
+   opacity: 0.9;
+   max-width: 600px;
+   margin: 0 auto;
+   position: relative;
+   z-index: 1;
+}
+
+/* Modern Cards */
+.modern-card {
+   background: var(--white);
+   border-radius: var(--border-radius-large);
+   box-shadow: var(--shadow-medium);
+   overflow: hidden;
+   margin-bottom: 2rem;
+   transition: var(--transition);
+}
+
+.modern-card:hover {
+   transform: translateY(-5px);
+   box-shadow: var(--shadow-hover);
+}
+
+.modern-card-body {
+   padding: 3rem;
+}
+
+.modern-card-header {
+   background: var(--primary-gradient);
+   color: var(--white);
+   padding: 2rem 3rem;
+   position: relative;
+}
+
+.modern-card-header::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+   opacity: 0.1;
+}
+
+/* Modern Buttons */
+.modern-btn {
+   background: var(--primary-gradient);
+   color: var(--white);
+   border: none;
+   padding: 1rem 2rem;
+   border-radius: var(--border-radius);
+   font-size: 1.1rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: var(--transition);
+   position: relative;
+   overflow: hidden;
+   text-decoration: none;
+   display: inline-block;
+   text-align: center;
+}
+
+.modern-btn:hover {
+   transform: translateY(-2px);
+   box-shadow: var(--shadow-hover);
+   color: var(--white);
+   text-decoration: none;
+}
+
+.modern-btn:active {
+   transform: translateY(0);
+}
+
+.modern-btn i {
+   margin-right: 0.5rem;
+}
+
+/* Section Titles */
+.modern-section-title {
+   text-align: center;
+   margin-bottom: 3rem;
+}
+
+.modern-section-title h2 {
+   font-size: 2.5rem;
+   color: var(--text-dark);
+   margin-bottom: 1rem;
+   font-weight: 700;
+}
+
+.modern-section-title p {
+   font-size: 1.1rem;
+   color: var(--text-light);
+   max-width: 600px;
+   margin: 0 auto;
+}
+
+/* Info Items (like contact info) */
+.modern-info-item {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 2.5rem;
+   position: relative;
+   z-index: 1;
+}
+
+.modern-info-icon {
+   width: 45px;
+   height: 45px;
+   min-width: 45px;
+   min-height: 45px;
+   background: rgba(255,255,255,0.2);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-right: 1.2rem;
+   margin-top: 0.2rem;
+   font-size: 1.1rem;
+   flex-shrink: 0;
+}
+
+.modern-info-text {
+   flex: 1;
+   min-width: 0;
+}
+
+.modern-info-text h4 {
+   margin: 0 0 0.5rem 0;
+   font-size: 1.1rem;
+   font-weight: 600;
+   line-height: 1.3;
+}
+
+.modern-info-text p {
+   margin: 0 0 0.3rem 0;
+   opacity: 0.9;
+   font-size: 0.9rem;
+   line-height: 1.4;
+   word-wrap: break-word;
+}
+
+.modern-info-text p:last-child {
+   margin-bottom: 0;
+}
+
+/* Modern Layout Sections */
+.modern-section {
+   padding: 5rem 0;
+   background: var(--bg-light);
+}
+
+.modern-section.white {
+   background: var(--white);
+}
+
+/* Product Grid Enhancements */
+.modern-product-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   gap: 2rem;
+   padding: 2rem 0;
+}
+
+.modern-product-item {
+   background: var(--white);
+   border-radius: var(--border-radius);
+   overflow: hidden;
+   box-shadow: var(--shadow-light);
+   transition: var(--transition);
+}
+
+.modern-product-item:hover {
+   transform: translateY(-5px);
+   box-shadow: var(--shadow-hover);
+}
+
+.modern-product-image {
+   width: 100%;
+   height: 250px;
+   object-fit: cover;
+   transition: var(--transition);
+}
+
+.modern-product-item:hover .modern-product-image {
+   transform: scale(1.05);
+}
+
+.modern-product-content {
+   padding: 1.5rem;
+}
+
+.modern-product-title {
+   font-size: 1.1rem;
+   font-weight: 600;
+   color: var(--text-dark);
+   margin-bottom: 0.5rem;
+   line-height: 1.3;
+}
+
+/* Enhanced Typography */
+.modern-text-gradient {
+   /* Better browser support approach */
+   color: #667eea;
+   font-weight: 700;
+   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Alternative approach for better browser support */
+.modern-text-gradient-alt {
+   color: #667eea;
+   font-weight: 700;
+   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Form Enhancements */
+.modern-form-group {
+   margin-bottom: 2rem;
+   position: relative;
+}
+
+.modern-form-label {
+   display: block;
+   margin-bottom: 0.5rem;
+   font-weight: 600;
+   color: var(--text-dark);
+   font-size: 0.95rem;
+}
+
+.modern-form-input,
+.modern-form-textarea {
+   width: 100%;
+   padding: 1rem;
+   border: 2px solid var(--border-light);
+   border-radius: var(--border-radius);
+   font-size: 1rem;
+   transition: var(--transition);
+   background: var(--white);
+   box-sizing: border-box;
+}
+
+.modern-form-input:focus,
+.modern-form-textarea:focus {
+   outline: none;
+   border-color: var(--primary-color);
+   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+   transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .modern-hero h1 {
+      font-size: 2.2rem;
+   }
+   
+   .modern-section-title h2 {
+      font-size: 2rem;
+   }
+   
+   .modern-card-body,
+   .modern-card-header {
+      padding: 2rem;
+   }
+   
+   .modern-product-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+   }
+   
+   .modern-info-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      margin-right: 1rem;
+      font-size: 1rem;
+   }
+}
+
+@media (max-width: 480px) {
+   .modern-hero {
+      padding: 3rem 0;
+   }
+   
+   .modern-hero h1 {
+      font-size: 1.8rem;
+   }
+   
+   .modern-section {
+      padding: 3rem 0;
+   }
+   
+   .modern-card-body,
+   .modern-card-header {
+      padding: 1.5rem;
+   }
+   
+   .modern-product-grid {
+      grid-template-columns: 1fr;
+   }
+   
+   .modern-info-icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
+      margin-right: 0.8rem;
+      font-size: 0.95rem;
+   }
+}
+
+/* Text Selection Styling */
+::selection {
+   background-color: #667eea;
+   color: white;
+   text-shadow: none;
+}
+
+::-moz-selection {
+   background-color: #667eea;
+   color: white;
+   text-shadow: none;
+}
+
+/* Ensure text is selectable */
+* {
+   -webkit-user-select: text;
+   -moz-user-select: text;
+   -ms-user-select: text;
+   user-select: text;
+}
+
+/* Except for buttons and interactive elements */
+button, .modern-btn, .btn, [role="button"] {
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+/* Animation Enhancements */
+@keyframes slideInUp {
+   from {
+      opacity: 0;
+      transform: translateY(30px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+.animate-slideInUp {
+   animation: slideInUp 0.5s ease-out;
+}
+
+/* Legacy Class Overrides for Smooth Integration */
+.shop_section_start.modern {
+   background: var(--primary-gradient);
+   color: var(--white);
+   padding: 4rem 0;
+}
+
+.shop_section_start.modern h1 {
+   color: var(--white);
+   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+   font-size: 3rem;
+   font-weight: 700;
+}
+
+.about_section.modern .about_taital {
+   background: var(--white);
+   padding: 3rem;
+   border-radius: var(--border-radius-large);
+   box-shadow: var(--shadow-medium);
+}
+
+.volis_main.modern {
+   background: var(--white);
+   border-radius: var(--border-radius);
+   box-shadow: var(--shadow-light);
+   overflow: hidden;
+   transition: var(--transition);
+}
+
+.volis_main.modern:hover {
+   transform: translateY(-5px);
+   box-shadow: var(--shadow-hover);
+}
+
+/* Footer Enhancements */
+.section_footer.modern {
+   background: var(--primary-gradient);
+   position: relative;
+}
+
+.section_footer.modern::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="0.5" fill="white" opacity="0.1"/><circle cx="20" cy="60" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+   opacity: 0.1;
+}
+
+.section_footer.modern .footer_section_2 {
+   position: relative;
+   z-index: 1;
+} 
