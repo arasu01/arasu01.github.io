@@ -231,6 +231,76 @@
               font-size: 0.75rem;
           }
       }
+
+      /* Fix Social Icons Clickability Issues (copied from index.html/clips.html) */
+      .section_footer .social-icons {
+         position: relative !important;
+         z-index: 9999 !important;
+         pointer-events: auto !important;
+         user-select: none !important;
+      }
+
+      .section_footer .social-icons a {
+         pointer-events: auto !important;
+         position: relative !important;
+         z-index: 10000 !important;
+         display: inline-block !important;
+         cursor: pointer !important;
+         text-decoration: none !important;
+         color: #f0f0f0 !important;
+         font-size: 1.5rem !important;
+         padding: 10px !important;
+         margin: 0 5px !important;
+         transition: all 0.3s ease !important;
+         min-width: 40px !important;
+         min-height: 40px !important;
+         display: flex !important;
+         align-items: center !important;
+         justify-content: center !important;
+         background: rgba(255,255,255,0.1) !important;
+         border-radius: 8px !important;
+      }
+
+      .section_footer .social-icons a:hover {
+         color: #ffffff !important;
+         transform: scale(1.1) !important;
+      }
+
+      .section_footer .social-icons a i {
+         pointer-events: none !important;
+         position: relative !important;
+         z-index: inherit !important;
+      }
+
+      /* Ensure footer pseudo-elements don't block clicks */
+      .section_footer.modern::before {
+         pointer-events: none !important;
+         z-index: 1 !important;
+      }
+
+      .section_footer.modern {
+         position: relative !important;
+      }
+
+      .section_footer.modern .container {
+         position: relative !important;
+         z-index: 10 !important;
+      }
+
+      /* Additional click area enhancement */
+      .section_footer .social-icons a {
+         min-width: 40px !important;
+         min-height: 40px !important;
+         display: flex !important;
+         align-items: center !important;
+         justify-content: center !important;
+         background: rgba(255,255,255,0.1) !important;
+         border-radius: 8px !important;
+      }
+
+      .section_footer .social-icons a:active {
+         transform: scale(0.95) !important;
+      }
    </style>
    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
       crossorigin="anonymous"></script>
@@ -285,7 +355,7 @@
       </div>
    </div>
    <!--header section start -->
-   <div class="header_section header_bg">
+   <div class="header_section">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -302,8 +372,6 @@
                      <li><a href="about.html">About</a></li>
                      <li><a href="products.html">Our Products</a></li>
                      <li><a href="contact.html">Contact Us</a></li>
-                     <!-- <li><a href="#"><img src="../images/search-icon.png"></a></li>
-                        <li><a href="#"><img src="../images/user-icon.png"></a></li> -->
                      <div id="myNav" class="overlay">
                         <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;"
                            aria-label="Close Navigation">&times;</a>
