@@ -505,9 +505,12 @@ button {
 .there_text {
     width: 100%;
     float: left;
-    font-size: 15px;
-    color: #ffffff;
-    margin: 0px;
+    font-size: 1rem;
+    color:  #666;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
 }
 
 .see_bt_main {

@@ -175,7 +175,81 @@
       .section_footer .social-icons a:active {
          transform: scale(0.95) !important;
       }
+
+      /* CLEAN PRODUCT CARD DESIGN - SIMPLIFIED STRUCTURE */
+      .gifts_section .gifts_section_2 .modern-card {
+         background: #fff !important;
+         border-radius: 15px !important;
+         box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+         overflow: hidden !important;
+         margin-bottom: 30px !important;
+         transition: all 0.3s ease !important;
+      }
+
+      .gifts_section .gifts_section_2 .modern-card:hover {
+         transform: translateY(-5px) !important;
+         box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+      }
+
+      .gifts_section .gifts_section_2 .img_5 {
+         height: 280px !important;
+         overflow: hidden !important;
+      }
+
+      .gifts_section .gifts_section_2 .modern-product-image {
+         width: 100% !important;
+         height: 100% !important;
+         object-fit: cover !important;
+         transition: transform 0.3s ease !important;
+      }
+
+      .gifts_section .gifts_section_2 .modern-card:hover .modern-product-image {
+         transform: scale(1.05) !important;
+      }
+
+      .gifts_section .gifts_section_2 .volis_main.modern {
+         background: #f8f9fa !important;
+         padding: 25px 20px !important;
+         margin: 0 !important;
+         text-align: center !important;
+      }
+
+     
    </style>
+   
+   <!-- Cookie Consent Styles -->
+   <style>
+      .cookie-consent {
+         position: fixed;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background: #333;
+         color: white;
+         padding: 15px;
+         text-align: center;
+         z-index: 10000;
+         font-size: 14px;
+         display: none;
+      }
+      .cookie-consent.show {
+         display: block;
+      }
+      .cookie-consent button {
+         background: #667eea;
+         color: white;
+         border: none;
+         padding: 8px 16px;
+         margin-left: 10px;
+         border-radius: 4px;
+         cursor: pointer;
+      }
+      .cookie-consent a {
+         color: #667eea;
+         text-decoration: underline;
+      }
+   </style>
+   
    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
       crossorigin="anonymous"></script>
    <!-- Meta Pixel Code -->
@@ -197,9 +271,6 @@
    <noscript><img height="1" width="1" style="display:none"
          src="https://www.facebook.com/tr?id=509594564987351&ev=PageView&noscript=1" /></noscript>
    <!-- End Meta Pixel Code -->
-   <!-- Start of HubSpot Embed Code -->
-   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
-   <!-- End of HubSpot Embed Code -->
    <!-- Organization Structured Data -->
    <script type="application/ld+json">
    {
@@ -229,6 +300,15 @@
       <iframe class="d-none visibility-hidden" src="https://www.googletagmanager.com/ns.html?id=G-69JGKGLVNL" height="0"
          width="0"></iframe>
    </noscript>
+   
+   <!-- Cookie Consent Banner -->
+   <div id="cookieConsent" class="cookie-consent">
+      <p>We use cookies to improve your experience and for analytics. By continuing to use this site, you agree to our 
+         <a href="html/privacy.html" target="_blank">Privacy Policy</a> and cookie usage. 
+         <button onclick="acceptCookies()">Accept All Cookies</button>
+         <button onclick="declineCookies()" style="background: #666;">Decline</button>
+      </p>
+   </div>
    <!-- announcement section start -->
    <div class="d-flex gap-2 align-items-center announcementColor scrolling-text-container">
       <div class="flex-grow-1 d-flex justify-content-center scrolling-text">
@@ -393,7 +473,7 @@
          </div>
       </div>
       <!-- about section end -->
-      <!-- gifts section start -->
+      <!-- our products section start -->
       <div class="gifts_section layout_padding modern-section">
          <div class="container">
             <div class="modern-section-title">
@@ -454,11 +534,9 @@
                      <div class="modern-card">
                         <div class="img_5"><img src="images/product-1.png" loading="lazy" alt="Bridal Bangles" class="modern-product-image"></div>
                         <div class="volis_main modern">
-                           <div class="volis_2 modern-card-body">
-                              <h2 class="volis_text modern-product-title">Bridal Bangles</h2>
+                           <h2 class="volis_text modern-product-title">Bridal Bangles</h2>
                               <p class="there_text">Elegant and beautifully crafted bangles designed to complement the
                                  bridal attire. Perfect for adding a touch of traditional charm to wedding outfits.</p>
-                           </div>
                         </div>
                      </div>
                   </div>
@@ -466,12 +544,10 @@
                      <div class="modern-card">
                         <div class="img_5"><img src="images/product-2.png" loading="lazy" alt="Silk Thread Bangle" class="modern-product-image"></div>
                         <div class="volis_main modern">
-                           <div class="volis_2 modern-card-body">
                               <h2 class="volis_text modern-product-title">Silk Thread Bangle</h2>
                               <p class="there_text">Delicately designed bangles made with vibrant silk threads. Ideal for
                                  adding a touch of color and sophistication to any outfit.</p>
                            </div>
-                        </div>
                      </div>
                   </div>
                </div>
@@ -484,7 +560,7 @@
             </div>
          </div>
       </div>
-      <!-- gifts section end -->
+      <!-- our products section end -->
       <!-- contact section start -->
       <div class="contact_section layout_padding modern-section white">
          <div class="container">
@@ -684,7 +760,7 @@
       <!-- copyright section end -->
       <!-- Whatapp Floater Section Start -->
       <div class="social-chat-icons">
-         <div class>
+         <div>
             <a href="https://wa.me/9360235889?text=Hi!" target="_blank" rel="noopener noreferrer">
                <img src="images/whatsapp.svg" width="40" class="chat-image-shadow" alt="Chat with us on WhatsApp">
             </a>
@@ -702,7 +778,8 @@
       <script src="js/custom.js" defer></script>
       <!-- javascript -->
       <script src="js/owl.carousel.js" defer></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js" defer></script>
+
       <script>
          $(document).ready(function () {
             $(".fancybox").fancybox({
@@ -744,17 +821,49 @@
       <!-- Start of HubSpot Embed Code -->
       <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
       <!-- End of HubSpot Embed Code -->
-      <!--Email Obfuscation-->
-      <script>
-         document.addEventListener("DOMContentLoaded", function() {
-             var user = "gayathrithreadcouture";
-             var domain = "gmail.com";
-             var link = document.createElement("a");
-             link.href = "mailto:" + user + "@" + domain;
-             link.textContent = user + "@" + domain;
-             document.getElementById("email").appendChild(link);
-         });
-       </script>
+         <!--Email Obfuscation-->
+   <script>
+      document.addEventListener("DOMContentLoaded", function() {
+         var user = "gayathrithreadcouture";
+         var domain = "gmail.com";
+         var link = document.createElement("a");
+         link.href = "mailto:" + user + "@" + domain;
+         link.textContent = user + "@" + domain;
+         document.getElementById("email").appendChild(link);
+      });
+   </script>
+   
+   <!-- Cookie Consent Script -->
+   <script>
+      // Show cookie consent banner if not already accepted
+      window.addEventListener('load', function() {
+         if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookieConsent').classList.add('show');
+         }
+      });
+      
+      function acceptCookies() {
+         localStorage.setItem('cookieConsent', 'accepted');
+         document.getElementById('cookieConsent').classList.remove('show');
+         // Enable analytics tracking
+         if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+               'analytics_storage': 'granted'
+            });
+         }
+      }
+      
+      function declineCookies() {
+         localStorage.setItem('cookieConsent', 'declined');
+         document.getElementById('cookieConsent').classList.remove('show');
+         // Disable analytics tracking
+         if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+               'analytics_storage': 'denied'
+            });
+         }
+      }
+   </script>
 </body>
 
 </html>

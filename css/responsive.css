@@ -377,9 +377,6 @@
         padding: 15px;
         height: 125px;
     }
-    .there_text {
-        font-size: 13px;
-    }
     .volis_main {
         height: 90px;
     }
@@ -748,9 +745,6 @@
     .lorem_text {
         margin-left: 0px;
         margin-right: 0px;
-    }
-    .there_text {
-        font-size: 12px;
     }
     .volis_2 {
         width: 85%;

@@ -244,11 +244,13 @@
 }
 
 .modern-product-title {
-   font-size: 1.1rem;
-   font-weight: 600;
-   color: var(--text-dark);
-   margin-bottom: 0.5rem;
-   line-height: 1.3;
+   color: #333 !important;
+   font-size: 1.5rem !important;
+   font-weight: 700 !important;
+   margin-bottom: 15px !important;
+   letter-spacing: 0.5px !important;
+   line-height: 1.3 !important;
+   text-align: center !important;
 }
 
 /* Enhanced Typography */
