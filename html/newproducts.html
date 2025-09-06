@@ -24,19 +24,19 @@
     <meta name="keywords"
         content="gayathri thread couture, silk thread jewelry, custom bangles, handmade couture, bridal accessories, Bridal Bangles, Silk Thread Bangles, Kundan Bangles, Hair Bands, Finger Rings, Saree Pins, Center Clips, Kids Bangles, Name Bangles, Return Gifts for All Occasions">
     <meta name="description"
-        content="Exquisite Kundan bangles for those who love classic jewelry. Perfect as return gifts for weddings, parties, and events. Exclusively from Gayathri Thread Couture.">
+        content="Discover our newest collection of exquisite handcrafted hair bands and accessories. Premium silk thread designs, elegant embellishments, and traditional patterns - perfect for all occasions. Exclusively from Gayathri Thread Couture.">
     <meta name="author" content="">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Gayathri Thread Couture - New Products">
     <meta property="og:url" content="https://www.gayathrithreadcouture.in">
     <meta property="og:description"
-        content="Exquisite Kundan bangles for those who love classic jewelry. Perfect as return gifts for weddings, parties, and events. Exclusively from Gayathri Thread Couture">
+        content="Discover our newest collection of exquisite handcrafted hair bands and accessories. Premium silk thread designs, elegant embellishments, and traditional patterns - perfect for all occasions. Exclusively from Gayathri Thread Couture.">
     <!-- X Card -->
     <meta property="twitter:title" content="Gayathri Thread Couture - New Products">
     <meta property="twitter:url" content="https://www.gayathrithreadcouture.in">
     <meta property="twitter:description"
-        content="Exquisite Kundan bangles for those who love classic jewelry. Perfect as return gifts for weddings, parties, and events. Exclusively from Gayathri Thread Couture">
+        content="Discover our newest collection of exquisite handcrafted hair bands and accessories. Premium silk thread designs, elegant embellishments, and traditional patterns - perfect for all occasions. Exclusively from Gayathri Thread Couture.">
     <!-- bootstrap css -->
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/custom.css" />
@@ -109,6 +109,117 @@
             z-index: 9999 !important;
             pointer-events: auto !important;
             user-select: none !important;
+        }
+        
+        /* Product Grid - 4 items per row on desktop */
+        .auto-col.four-items-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            padding: 1.5rem;
+        }
+        
+        /* Product item adjustments for 4-item grid */
+        .four-items-grid .product__top {
+            height: 15rem !important;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .four-items-grid .product__thumbnail img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .four-items-grid .product:hover .product__thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .four-items-grid .product__title {
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .four-items-grid .product__summary {
+            padding: 0.75rem;
+            overflow: hidden;
+            margin-top: 0.75rem;
+        }
+        
+        .four-items-grid .text-muted.fs-12 {
+            font-size: 0.9rem !important;
+            font-weight: 500;
+            color: #667eea !important;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .four-items-grid .product {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Responsive adjustments for the grid */
+        @media (max-width: 1200px) {
+            .auto-col.four-items-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .auto-col.four-items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .auto-col.four-items-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .four-items-grid .product__top {
+                height: 18rem !important; /* Larger images on mobile */
+            }
+            
+            .four-items-grid .product__title {
+                font-size: 1.2rem;
+            }
+            
+            .four-items-grid .product {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        /* Additional adjustments for large screens */
+        @media (min-width: 1600px) {
+            .four-items-grid .product__top {
+                height: 18rem !important;
+            }
+            
+            .four-items-grid .product__title {
+                font-size: 1.25rem;
+            }
+            
+            .auto-col.four-items-grid {
+                gap: 2rem;
+                padding: 1.5rem;
+            }
         }
 
         .section_footer .social-icons a {
@@ -188,7 +299,7 @@
     <!-- announcement section start -->
     <div class="d-flex gap-2 align-items-center announcementColor scrolling-text-container">
         <div class="flex-grow-1 d-flex justify-content-center scrolling-text">
-            🎉 Celebrate Onam in Style
+            🌼 Celebrate Dussehra with Elegance 🌼
          Enjoy FREE Delivery on all orders above ₹499!
          Celebrate with us and grab amazing deals on your favorite items! 🛍️
 
@@ -241,66 +352,1312 @@
         </div>
     </div>
     <!-- bangles section end -->
-    <div class="flexible-grid lg-down-1 gap-3 grid-container">
-        <div id="ajax-products-view">
-            <div class="auto-col gap-3 mobile_two_items minWidth-12rem" style="--maxWidth:1fr">
+    <div class="flexible-grid lg-down-1 gap-3 grid-container" style="width: 100%; max-width: 1400px; margin: 0 auto;">
+        <div id="ajax-products-view" style="width: 100%;">
+            <div class="auto-col gap-3 mobile_two_items four-items-grid">
                 <div class="product border rounded text-center d-flex flex-column gap-10">
                     <div class="product__top width--100 height-12-5-rem aspect-1">
 
                         <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
                             <img src="../images/new/1.jpg" loading="lazy" class="dark-support rounded"
-                                alt="Hair Bands - 1">
+                                alt="Elegant Floral Hair Band">
                         </div>
                     </div>
                     <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
                         <div class="text-muted fs-12">
-                            Hair Bands
+                            Premium Hair Accessories
                         </div>
-                        <h6 class="product__title text-truncate width--80">Hair Bands - 1</h6>
+                        <h6 class="product__title text-truncate width--80">Elegant Floral Hair Band</h6>
                     </div>
                 </div>
                 <div class="product border rounded text-center d-flex flex-column gap-10">
                     <div class="product__top width--100 height-12-5-rem aspect-1">
                         <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
                             <img src="../images/new/2.jpg" loading="lazy" class="dark-support rounded"
-                                alt="Hair Bands - 2">
+                                alt="Embellished Silk Thread Headband">
                         </div>
                     </div>
                     <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
                         <div class="text-muted fs-12">
-                            Hair Bands
+                            Premium Hair Accessories
                         </div>
-                        <h6 class="product__title text-truncate width--80">Hair Bands - 2</h6>
+                        <h6 class="product__title text-truncate width--80">Embellished Silk Thread Headband</h6>
                     </div>
                 </div>
                 <div class="product border rounded text-center d-flex flex-column gap-10">
                     <div class="product__top width--100 height-12-5-rem aspect-1">
                         <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
                             <img src="../images/new/3.jpg" loading="lazy" class="dark-support rounded"
-                                alt="Hair Bands - 3">
+                                alt="Decorative Pearl Hair Band">
                         </div>
                     </div>
                     <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
                         <div class="text-muted fs-12">
-                            Hair Bands
+                            Bridal Hair Accessories
                         </div>
-                        <h6 class="product__title text-truncate width--80">Hair Bands - 3</h6>
+                        <h6 class="product__title text-truncate width--80">Decorative Pearl Hair Band</h6>
                     </div>
                 </div>
+                <!-- Designer Hair Band -->
                 <div class="product border rounded text-center d-flex flex-column gap-10">
                     <div class="product__top width--100 height-12-5-rem aspect-1">
                         <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
                             <img src="../images/new/4.jpg" loading="lazy" class="dark-support rounded"
-                                alt="Hair Bands - 4">
+                                alt="Kundan Embellished Hair Band">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Designer Collection
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Kundan Embellished Hair Band</h6>
+                    </div>
+                </div>
+                <!-- Stylish Hair Band -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/5.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Ornate Thread Work Hair Band">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Festive Collection
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Ornate Thread Work Hair Band</h6>
+                    </div>
+                </div>
+                <!-- Silk Thread Hair Band -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/6.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Floral Pattern Hair Band">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Silk Thread Collection
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Floral Pattern Hair Band</h6>
+                    </div>
+                </div>
+                <!-- Multicolor Hair Band -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/7.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Multicolor Traditional Hair Band">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Traditional Collection
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Multicolor Traditional Hair Band</h6>
+                    </div>
+                </div>
+                <!-- Beaded Hair Band -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/8.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Beaded Luxury Hair Band">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Luxury Hair Accessories
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Beaded Luxury Hair Band</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 9 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/9.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 9">
                         </div>
                     </div>
                     <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
                         <div class="text-muted fs-12">
                             Hair Bands
                         </div>
-                        <h6 class="product__title text-truncate width--80">Hair Bands - 4</h6>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 9</h6>
                     </div>
                 </div>
+                <!-- Hair Bands - 10 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/10.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 10">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 10</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 11 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/11.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 11">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 11</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 12 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/12.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 12">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 12</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 13 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/13.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 13">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 13</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 14 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/14.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 14">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 14</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 15 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/15.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 15">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 15</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 16 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/16.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 16">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 16</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 17 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/17.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 17">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 17</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 18 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/18.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 18">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 18</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 19 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/19.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 19">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 19</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 20 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/20.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 20">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 20</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 21 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/21.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 21">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 21</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 22 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/22.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 22">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 22</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 23 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/23.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 23">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 23</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 24 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/24.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 24">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 24</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 25 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/25.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 25">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 25</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 26 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/26.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 26">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 26</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 27 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/27.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 27">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 27</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 28 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/28.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 28">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 28</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 29 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/29.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 29">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 29</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 30 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/30.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 30">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 30</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 31 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/31.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 31">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 31</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 32 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/32.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 32">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 32</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 33 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/33.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 33">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 33</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 34 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/34.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 34">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 34</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 35 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/35.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 35">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 35</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 36 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/36.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 36">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 36</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 37 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/37.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 37">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 37</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 38 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/38.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 38">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 38</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 39 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/39.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 39">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 39</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 40 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/40.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 40">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 40</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 41 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/41.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 41">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 41</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 42 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/42.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 42">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 42</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 43 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/43.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 43">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 43</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 44 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/44.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 44">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 44</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 45 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/45.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 45">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 45</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 46 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/46.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 46">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 46</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 47 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/47.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 47">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 47</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 48 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/48.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 48">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 48</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 49 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/49.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 49">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 49</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 50 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/50.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 50">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 50</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 51 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/51.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 51">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 51</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 52 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/52.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 52">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 52</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 53 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/53.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 53">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 53</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 54 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/54.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 54">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 54</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 55 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/55.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 55">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 55</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 56 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/56.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 56">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 56</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 57 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/57.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 57">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 57</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 58 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/58.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 58">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 58</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 59 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/59.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 59">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 59</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 60 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/60.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 60">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 60</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 61 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/61.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 61">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 61</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 62 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/62.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 62">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 62</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 63 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/63.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 63">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 63</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 64 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/64.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 64">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 64</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 65 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/65.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 65">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 65</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 66 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/66.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 66">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 66</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 67 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/67.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 67">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 67</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 68 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/68.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 68">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 68</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 69 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/69.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 69">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 69</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 70 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/70.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 70">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 70</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 71 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/71.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 71">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 71</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 72 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/72.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 72">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 72</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 73 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/73.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 73">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 73</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 74 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/74.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 74">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 74</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 75 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/75.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 75">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 75</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 76 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/76.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 76">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 76</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 77 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/77.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 77">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 77</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 78 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/78.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 78">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 78</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 79 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/79.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 79">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 79</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 80 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/80.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 80">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 80</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 81 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/81.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 81">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 81</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 82 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/82.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 82">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 82</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 83 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/83.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 83">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 83</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 84 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/84.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 84">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 84</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 85 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/85.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 85">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 85</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 86 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/86.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 86">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 86</h6>
+                    </div>
+                </div>
+                <!-- Hair Bands - 87 -->
+                <div class="product border rounded text-center d-flex flex-column gap-10">
+                    <div class="product__top width--100 height-12-5-rem aspect-1">
+                        <div class="product__thumbnail align-items-center d-flex h-100 justify-content-center">
+                            <img src="../images/new/87.jpg" loading="lazy" class="dark-support rounded"
+                                alt="Hair Bands - 87">
+                        </div>
+                    </div>
+                    <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
+                        <div class="text-muted fs-12">
+                            Hair Bands
+                        </div>
+                        <h6 class="product__title text-truncate width--80">Hair Bands - 87</h6>
+                    </div>
+                </div></div>
             </div>
         </div>
     </div>
