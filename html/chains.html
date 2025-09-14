@@ -74,16 +74,79 @@
 
       body #products-container,
       html body #products-container {
-         display: flex !important;
-         align-items: center !important;
-         justify-content: center !important;
-         min-height: 400px !important;
+         display: grid !important;
+         grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
+         gap: 2rem !important;
          width: calc(100vw - 4rem) !important;
          max-width: calc(100vw - 4rem) !important;
          margin: 0 auto !important;
          box-sizing: border-box !important;
          background: #fff !important;
          padding: 4rem 2rem !important;
+      }
+      
+      /* Product Item Styling */
+      .product {
+         position: relative;
+         overflow: hidden;
+         background: white;
+         transition: all 0.3s ease;
+         margin-bottom: 30px;
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+
+      .product:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+
+      .product__top {
+         position: relative;
+         overflow: hidden;
+         width: 100%;
+         padding-bottom: 100%;
+         height: 0;
+      }
+
+      .product__thumbnail {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+      }
+
+      .product__thumbnail img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform 0.5s ease;
+         background: #f9f9f9;
+      }
+
+      .product:hover .product__thumbnail img {
+         transform: scale(1.05);
+      }
+
+      .product__summary {
+         flex: 1;
+      }
+
+      .product__title {
+         font-weight: 600;
+         color: #333;
+         margin: 5px 0;
+         font-size: 1rem;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         width: 100%;
+         max-width: 100%;
+         line-height: 1.4;
+         font-family: inherit;
       }
 
       .coming-soon-container {
@@ -233,9 +296,24 @@
       }
 
       /* Responsive Design */
+      @media (max-width: 1200px) {
+         body #products-container,
+         html body #products-container {
+            grid-template-columns: repeat(3, minmax(220px, 1fr)) !important;
+         }
+      }
+      
+      @media (max-width: 992px) {
+         body #products-container,
+         html body #products-container {
+            grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+         }
+      }
+      
       @media (max-width: 768px) {
          body #products-container,
          html body #products-container {
+            grid-template-columns: repeat(1, 1fr) !important;
             padding: 2rem 1rem !important;
          }
 
@@ -438,34 +516,223 @@ Celebrate with us and grab amazing deals on your favorite items! 🛍️
    </div>
    <!-- chains section start -->
    <div class="grid-container">
-      <div id="products-container">
-         <div class="coming-soon-container">
-            <div class="coming-soon-content">
-               <div class="coming-soon-icon">
-                  <i class="fas fa-link"></i>
-               </div>
-               <h2 class="coming-soon-title">Coming Soon!</h2>
-               <p class="coming-soon-subtitle">Exquisite Handcrafted Chains</p>
-               <p class="coming-soon-description">
-                  We're crafting a stunning collection of handmade chains featuring Gold Chains, Silver Chains, and Designer Chains with traditional designs and contemporary elegance. 
-                  Our skilled artisans are creating unique pieces that will enhance your style and add timeless beauty to your jewelry collection.
-               </p>
-               <div class="notify-buttons">
-                  <a href="https://wa.me/919360235889?text=Hi! I'd like to be notified when the Crystal Bead, Glass Bead & Spiritual Bead Bracelet collection launches." 
-                     class="notify-btn" target="_blank" rel="noopener noreferrer">
-                     <i class="fab fa-whatsapp"></i> Get Notified
-                  </a>
-                  <a href="https://www.instagram.com/gayathri_thread_couture/" 
-                     class="notify-btn" target="_blank" rel="noopener noreferrer">
-                     <i class="fab fa-instagram"></i> Follow Updates
-                  </a>
-               </div>
-               
-            </div>
-         </div>
-      </div>
+      <div id="products-container"></div>
    </div>
    <!-- chains section end -->
+
+   <script>
+      // Chains Product List
+      const products = [
+         { 
+            id: 1,
+            storeId: 1, 
+            name: "Gold-Plated Traditional Long Chain with Pendant Hook", 
+            image: "../images/chain/1.jpg",
+            description: "Elegant gold-plated traditional chain with intricate design and secure pendant hook for versatile jewelry styling.",
+            materials: "Gold-plated metal, premium finish, durable clasps",
+            occasions: "Traditional ceremonies, Festive celebrations, Everyday wear"
+         },
+         { 
+            id: 2,
+            storeId: 2, 
+            name: "Silver Antique Finish Chain with Adjustable Length", 
+            image: "../images/chain/2.jpg",
+            description: "Versatile silver chain with antique finish featuring adjustable length for multiple styling options and secure closure.",
+            materials: "Silver-plated metal, antique finish, adjustable clasp",
+            occasions: "Western outfits, Casual wear, Gifting occasions"
+         },
+         { 
+            id: 3,
+            storeId: 3, 
+            name: "Dual-Tone Decorative Chain with Embellished Links", 
+            image: "../images/chain/3.jpg",
+            description: "Sophisticated dual-tone chain featuring uniquely embellished links creating a statement piece for various outfits.",
+            materials: "Mixed metals, decorative links, premium clasps",
+            occasions: "Special events, Party wear, Fashion statements"
+         },
+         { 
+            id: 4,
+            storeId: 4, 
+            name: "Temple Design Chain with Traditional Motifs", 
+            image: "../images/chain/4.jpg",
+            description: "Authentic temple-inspired chain design featuring traditional South Indian motifs and detailed craftsmanship.",
+            materials: "Gold-plated brass, traditional motifs, secure hook",
+            occasions: "Temple visits, Traditional ceremonies, Cultural events"
+         },
+         { 
+            id: 5,
+            storeId: 5, 
+            name: "Rose Gold Delicate Chain with Crystal Accents", 
+            image: "../images/chain/5.jpg",
+            description: "Feminine rose gold chain with subtle crystal accents that catch the light beautifully for an elegant appearance.",
+            materials: "Rose gold plating, crystal elements, lightweight design",
+            occasions: "Romantic evenings, Bridal accessories, Elegant gatherings"
+         },
+         { 
+            id: 6,
+            storeId: 6, 
+            name: "Oxidized Silver Ethnic Chain with Pendant Support", 
+            image: "../images/chain/6.jpg",
+            description: "Rustic oxidized silver chain with strong pendant support designed for ethnic jewelry styling and cultural accessories.",
+            materials: "Oxidized silver, ethnic design, durable construction",
+            occasions: "Ethnic outfits, Cultural celebrations, Bohemian styling"
+         },
+         { 
+            id: 7,
+            storeId: 7, 
+            name: "Beaded Gold Chain with Artistic Connector Links", 
+            image: "../images/chain/7.jpg",
+            description: "Creative beaded gold chain featuring artistic connector links that provide a unique and eye-catching jewelry accessory.",
+            materials: "Gold-plated metal, decorative beads, artistic links",
+            occasions: "Artistic events, Creative styling, Fashion-forward occasions"
+         },
+         { 
+            id: 8,
+            storeId: 8, 
+            name: "Pearl-Accented Silver Chain with Adjustable Clasp", 
+            image: "../images/chain/8.jpg",
+            description: "Elegant silver chain with delicate pearl accents and convenient adjustable clasp for versatile wearing options.",
+            materials: "Silver-tone metal, freshwater pearls, adjustable clasp",
+            occasions: "Formal events, Office wear, Sophisticated gatherings"
+         }
+      ];
+      
+      // Function to generate products
+      function generateProducts() {
+         const container = document.getElementById("products-container");
+         if (!container) {
+            console.error("Products container not found!");
+            return;
+         }
+
+         // Check if there are products to display
+         if (products && products.length > 0) {
+            // Generate HTML for all products
+            const productsHTML = products.map(product => `
+               <div class="product" style="cursor: pointer;" title="Click to view details">
+                  <div class="product__top">
+                     <div class="product__thumbnail">
+                        <img src="${product.image}" 
+                             loading="lazy" 
+                             alt="${product.name}"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
+                     </div>
+                  </div>
+                  <div class="product__summary" style="padding: 15px;">
+                     <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Handcrafted Chains</div>
+                     <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
+                     <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description || 'Beautiful handcrafted chain with elegant design.'}</p>
+                     <div style="margin-top: 10px;">
+                        <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials || 'High-quality metal, durable finish, secure clasps'}</div>
+                        <div style="font-size: 0.7rem; color: #888;"><strong>Perfect for:</strong> ${product.occasions || 'Daily wear, Special events, Gifting'}</div>
+                     </div>
+                     <div style="margin-top: 12px; text-align: center;">
+                        <button onclick="showProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                           <i class="fas fa-info-circle"></i> View Details
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            `).join('');
+
+            // Set all HTML at once
+            container.innerHTML = productsHTML;
+         } else {
+            // Show Coming Soon message
+            container.innerHTML = `
+               <div class="coming-soon-container">
+                  <div class="coming-soon-content">
+                     <div class="coming-soon-icon">
+                        <i class="fas fa-gem"></i>
+                     </div>
+                     <h1 class="coming-soon-title">Coming Soon</h1>
+                     <p class="coming-soon-subtitle">Our exquisite chain collection is on its way!</p>
+                     <p class="coming-soon-description">We're crafting beautiful gold, silver, and designer chains with the same attention to detail and quality you love. Be the first to know when they arrive.</p>
+                     
+                     <div class="launch-progress">
+                        <div class="progress-bar">
+                           <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                        <p class="progress-text">75% Complete - Launching Soon</p>
+                     </div>
+                     
+                     <div class="notify-buttons">
+                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in your upcoming chain collection. Please notify me when it's available." class="notify-btn" target="_blank" rel="noopener noreferrer">
+                           <i class="fab fa-whatsapp"></i> Get WhatsApp Updates
+                        </a>
+                        <a href="https://www.instagram.com/gayathri_thread_couture/" class="notify-btn" target="_blank" rel="noopener noreferrer">
+                           <i class="fab fa-instagram"></i> Follow on Instagram
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            `;
+         }
+      }
+
+      // Function to show product details in a modal
+      function showProductDetails(productId) {
+         const product = products.find(p => p.id === productId);
+         if (!product) return;
+
+         const modalHTML = `
+            <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+               <div style="background: white; border-radius: 15px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;">
+                  <button onclick="closeProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
+                  <div style="padding: 30px;">
+                     <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
+                     <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                     <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description || 'Beautiful handcrafted chain with elegant design and stylish appeal.'}</p>
+                     
+                     <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h4 style="color: #333; margin-bottom: 15px; text-align: center;">Product Details</h4>
+                        <div style="margin-bottom: 12px;"><strong>Materials:</strong> ${product.materials || 'High-quality metal, durable finish, secure clasps'}</div>
+                        <div><strong>Perfect Occasions:</strong> ${product.occasions || 'Daily wear, Special events, Gifting'}</div>
+                     </div>
+                     
+                     <div style="text-align: center;">
+                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                           <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                        <!-- Shop Online button disabled -->
+                        <a style="background: #cccccc; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600; opacity: 0.6; cursor: not-allowed;">
+                           <i class="fas fa-shopping-cart"></i> Shop Online
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         `;
+         
+         document.body.insertAdjacentHTML('beforeend', modalHTML);
+         document.body.style.overflow = 'hidden';
+      }
+
+      // Function to close the product modal
+      function closeProductModal() {
+         const modal = document.getElementById('productModal');
+         if (modal) {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+         }
+      }
+
+      // Wait for DOM to be fully loaded
+      if (document.readyState === 'loading') {
+         document.addEventListener('DOMContentLoaded', generateProducts);
+      } else {
+         generateProducts();
+      }
+
+      // Also ensure it works after window load
+      window.addEventListener('load', function () {
+         const container = document.getElementById("products-container");
+         if (container && !container.innerHTML) {
+            generateProducts();
+         }
+      });
+   </script>
    <!-- section footer start -->
    <div class="section_footer modern" itemscope itemtype="http://schema.org/Organization">
       <div class="container">
