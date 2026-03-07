@@ -191,8 +191,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6 col-lg-2">
-                    <span style="font-size:33px;cursor:pointer; color: #ffffff;" onclick="openNav()"><img
-                            src="../images/toggle-menu.png" alt="Toggle Menu" class="toggle_menu"></span>
+                    <button type="button" class="menu_toggle_btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-controls="myNav" aria-expanded="false" style="font-size:33px;cursor:pointer;color:#ffffff;background:transparent;border:0;padding:0;width:auto;line-height:1;"><img
+                            src="../images/toggle-menu.png" alt="Toggle Menu" class="toggle_menu"></button>
                 </div>
                 <div class="col-sm-6 col-lg-2">
                     <!-- <div class="logo"><a href="index.html"><img src="../images/logo.png"></a></div> -->
@@ -205,18 +205,18 @@
                             <li><a href="products.html">Our Products</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <div id="myNav" class="overlay">
-                                <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;"
-                                    aria-label="Close Navigation">&times;</a>
-                                <div class="overlay-content">
-                                    <a href="../index.html">Home</a>
-                                    <a href="about.html">About</a>
-                                    <a href="products.html">Our Products</a>
-                                    <a href="blog.html">Blog</a>
-                                    <a href="contact.html">Contact Us</a>
-                                </div>
-                            </div>
                         </ul>
+                        <div id="myNav" class="overlay">
+                            <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;"
+                                    aria-label="Close Navigation">&times;</a>
+                            <div class="overlay-content">
+                                <a href="../index.html">Home</a>
+                                <a href="about.html">About</a>
+                                <a href="products.html">Our Products</a>
+                                <a href="blog.html">Blog</a>
+                                <a href="contact.html">Contact Us</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -411,15 +411,7 @@
         </div>
     </div>
     <!-- Whatapp Floater Section End -->
-    <script>
-        function openNav() {
-            document.getElementById("myNav").style.width = "100%";
-        }
-
-        function closeNav() {
-            document.getElementById("myNav").style.width = "0%";
-        }
-    </script>
+    <script src="../js/custom.js" defer></script>
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
     <!-- End of HubSpot Embed Code -->
