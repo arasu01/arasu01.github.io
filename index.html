@@ -343,15 +343,14 @@
             <div class="col-sm-8">
                <div class="menu_text">
                   <ul>
-                     <li class="active"><a href="index.html">Home</a></li>
+                     <li class="active"><a aria-current="page" href="index.html">Home</a></li>
                      <li><a href="html/about.html">About</a></li>
                      <li><a href="html/products.html">Our Products</a></li>
                      <li><a href="html/blog.html">Blog</a></li>
                      <li><a href="html/contact.html">Contact Us</a></li>
                   </ul>
-                  <div id="myNav" class="overlay">
-                     <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;"
-                           aria-label="Close Navigation">&times;</a>
+                  <div id="myNav" class="overlay" aria-hidden="true">
+                     <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;" aria-label="Close Navigation">&times;</a>
                      <div class="overlay-content">
                         <a href="index.html">Home</a>
                         <a href="html/about.html">About</a>
