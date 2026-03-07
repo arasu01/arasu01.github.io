@@ -816,35 +816,35 @@
       <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
       <script src="js/custom.js" defer></script>
       <!-- javascript -->
-      <script src="js/owl.carousel.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" defer></script>
 
       <script>
-         $(document).ready(function () {
-            $(".fancybox").fancybox({
-               openEffect: "none",
-               closeEffect: "none"
-            });
+         document.addEventListener("DOMContentLoaded", function () {
+            if (!window.jQuery) {
+               return;
+            }
+
+            var $ = window.jQuery;
+            if ($.fn.fancybox) {
+               $(".fancybox").fancybox({
+                  openEffect: "none",
+                  closeEffect: "none"
+               });
+
+               $('[data-fancybox]').fancybox({
+                  afterLoad: function () {
+                     var fancyboxInstance = $.fancybox.getInstance();
+                     if (fancyboxInstance) {
+                        // Hook point for Fancybox instance-dependent behavior.
+                     }
+                  }
+               });
+            }
 
             $(".zoom").hover(function () {
-
                $(this).addClass('transition');
             }, function () {
-
                $(this).removeClass('transition');
-            });
-         });
-
-      </script>
-      <script>
-         $(document).ready(function () {
-            $('[data-fancybox]').fancybox({
-               afterLoad: function (instance, current) {
-                  var fancyboxInstance = $.fancybox.getInstance();
-                  if (fancyboxInstance) {
-                     // Your code using fancyboxInstance
-                  }
-               }
             });
          });
       </script>

@@ -545,7 +545,6 @@
     <script src="../js/jquery.mCustomScrollbar.concat.min.js" defer></script>
     <script src="../js/custom.js" defer></script>
     <!-- javascript -->
-    <script src="../js/owl.carousel.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" defer></script>
 
     <script>
@@ -654,8 +653,8 @@
                 <div class="product" style="cursor: pointer;" title="Click to view details">
                     <div class="product__top">
                         <div class="product__thumbnail">
-                            <img src="${product.image}" 
-                                 loading="lazy" 
+                            <img src="${product.image}"
+                                 loading="lazy"
                                  alt="${product.name}"
                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                             <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
@@ -696,14 +695,14 @@
                          <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
                          <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
                          <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description || 'Beautiful silk thread saree pin with elegant design and traditional craftsmanship.'}</p>
-                         
+
                          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
                             <h4 style="color: #333; margin-bottom: 15px; text-align: center;">Product Details</h4>
                             <div style="margin-bottom: 12px;"><strong>Materials:</strong> ${product.materials || 'Premium silk threads, decorative elements, secure pin mechanism'}</div>
                             <div style="margin-bottom: 12px;"><strong>Perfect Occasions:</strong> ${product.occasions || 'Saree styling, Traditional wear, Formal occasions'}</div>
                             <div><strong>Care Instructions:</strong> ${product.care || 'Keep dry, gentle handling, secure storage'}</div>
                          </div>
-                         
+
                          <div style="text-align: center;">
                             <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; margin-right: 10px; font-weight: 600;">
                                <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
@@ -716,7 +715,7 @@
                    </div>
                 </div>
             `;
-            
+
             document.body.insertAdjacentHTML('beforeend', modalHTML);
             document.body.style.overflow = 'hidden';
         }
