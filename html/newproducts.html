@@ -58,6 +58,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" media="screen">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/shared-page-chrome.css">
     <link rel="canonical" href="https://gayathrithreadcouture.in/html/newproducts.html">
     <style>
         h1 {
@@ -102,15 +103,6 @@
         button:hover {
             background-color: #218838;
         }
-
-        /* Fix Social Icons Clickability Issues (copied from index.html/clips.html) */
-        .section_footer .social-icons {
-            position: relative !important;
-            z-index: 9999 !important;
-            pointer-events: auto !important;
-            user-select: none !important;
-        }
-
         /* Product Grid - 4 items per row on desktop */
         .auto-col.four-items-grid {
             display: grid;
@@ -221,53 +213,7 @@
                 padding: 1.5rem;
             }
         }
-
-        .section_footer .social-icons a {
-            pointer-events: auto !important;
-            position: relative !important;
-            z-index: 10000 !important;
-            display: inline-block !important;
-            cursor: pointer !important;
-            text-decoration: none !important;
-            color: #f0f0f0 !important;
-            font-size: 1.5rem !important;
-            padding: 10px !important;
-            margin: 0 5px !important;
-            transition: all 0.3s ease !important;
-            min-width: 40px !important;
-            min-height: 40px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: rgba(255, 255, 255, 0.1) !important;
-            border-radius: 8px !important;
-        }
-
-        .section_footer .social-icons a:hover {
-            color: #ffffff !important;
-            transform: scale(1.1) !important;
-        }
-
-        .section_footer .social-icons a i {
-            pointer-events: none !important;
-            position: relative !important;
-            z-index: inherit !important;
-        }
-
-        .section_footer.modern::before {
-            pointer-events: none !important;
-            z-index: 1 !important;
-        }
-
-        .section_footer.modern {
-            position: relative !important;
-        }
-
-        .section_footer.modern .container {
-            position: relative !important;
-            z-index: 10 !important;
-        }
-    </style>
+        </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
         crossorigin="anonymous"></script>
     <!-- Meta Pixel Code -->
@@ -288,70 +234,79 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=509594564987351&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
-</head>
+    <!-- End Meta Pixel Code --></head>
 
 <body>
     <noscript>
         <iframe class="d-none visibility-hidden" src="https://www.googletagmanager.com/ns.html?id=G-69JGKGLVNL"
             height="0" width="0"></iframe>
     </noscript>
-    <!-- announcement section start -->
-    <div class="d-flex gap-2 align-items-center announcementColor scrolling-text-container">
-        <div class="flex-grow-1 d-flex justify-content-center scrolling-text">
-            
+    
+   
+   <!-- Cookie Consent Banner -->
+   <div id="cookieConsent" class="cookie-consent">
+      <p>We use cookies to improve your experience on our handcrafted jewelry site. <a href="privacy.html" target="_blank">Learn more</a> or accept to continue.
+         <button onclick="acceptCookies()">Accept</button>
+         <button onclick="declineCookies()" style="background: #666;">Decline</button>
+      </p>
+   </div>
+   <!-- announcement section start -->
+   <div class="d-flex gap-2 align-items-center announcementColor scrolling-text-container">
+      <div class="flex-grow-1 d-flex justify-content-center scrolling-text">
+         
          Enjoy FREE Delivery on all orders above ₹999!
          Celebrate with us and grab amazing deals on your favorite items! 🛍️
 
          🛍️ Visit us at: <a href="https://gayathrithreadcouture.myinstamojo.com/"> Gayathri Thread Couture Store</a>
-        </div>
-    </div>
-    <!-- announcement section end -->
-    <div class="container">
-        <div class="d-flex flex-wrap">
-            <a href="tel:+91 9360235889" class="items-contact d-flex align-items-center gap-2">
-                <span>9360235889</span>
-            </a>
-            <a href="mailto:gayathrithreadcouture@gmail.com" class="items-contact d-flex align-items-center gap-2">
-                <span id="email"></span>
-            </a>
-        </div>
-    </div>
-    <!--header section start -->
-    <div class="header_section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6 col-lg-2">
-                    <button type="button" class="menu_toggle_btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-controls="myNav" aria-expanded="false" style="font-size:33px;cursor:pointer;color:#ffffff;background:transparent;border:0;padding:0;width:auto;line-height:1;"><img
-                            src="../images/toggle-menu.png" alt="Toggle Menu" class="toggle_menu"></button>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <!-- <div class="logo"><a href="index.html"><img src="../images/logo.png"></a></div> -->
-                </div>
-                <div class="col-sm-8">
-                    <div class="menu_text">
-                        <ul>
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li class="active"><a aria-current="page" href="products.html">Our Products</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                        </ul>
-                        <div id="myNav" class="overlay" aria-hidden="true">
-                            <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;" aria-label="Close Navigation">&times;</a>
-                            <div class="overlay-content">
-                                <a href="../index.html">Home</a>
-                                <a href="about.html">About</a>
-                                <a href="products.html">Our Products</a>
-                                <a href="blog.html">Blog</a>
-                                <a href="contact.html">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      </div>
+   </div>
+   <!-- announcement section end -->
+   <div class="container">
+      <div class="d-flex flex-wrap">
+         <a href="tel:+91 9360235889" class="items-contact d-flex align-items-center gap-2">
+            <span>9360235889</span>
+         </a>
+         <a href="mailto:gayathrithreadcouture@gmail.com" class="items-contact d-flex align-items-center gap-2">
+            <span id="email"></span>
+         </a>
+      </div>
+   </div>
+   <!--header section start -->
+   <div class="header_section">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-sm-6 col-lg-2">
+               <button type="button" class="menu_toggle_btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-controls="myNav" aria-expanded="false" style="font-size:33px;cursor:pointer;color:#ffffff;background:transparent;border:0;padding:0;width:auto;line-height:1;"><img
+                     src="../images/toggle-menu.png" alt="Toggle Menu" class="toggle_menu"></button>
             </div>
-        </div>
-    </div>
+            <div class="col-sm-6 col-lg-2">
+               <!-- <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div> -->
+            </div>
+            <div class="col-sm-8">
+               <div class="menu_text">
+                  <ul>
+                     <li><a href="../index.html">Home</a></li>
+                     <li><a href="about.html">About</a></li>
+                     <li class="active"><a aria-current="page" href="products.html">Our Products</a></li>
+                     <li><a href="blog.html">Blog</a></li>
+                     <li><a href="contact.html">Contact Us</a></li>
+                  </ul>
+                  <div id="myNav" class="overlay" aria-hidden="true">
+                     <a href="#" class="closebtn" role="button" onclick="closeNav(); return false;" aria-label="Close Navigation">&times;</a>
+                     <div class="overlay-content">
+                        <a href="../index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="products.html">Our Products</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="contact.html">Contact Us</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- header section end -->
     <!-- bangles section end -->
     <div class="flexible-grid lg-down-1 gap-3 grid-container" style="width: 100%; max-width: 1400px; margin: 0 auto;">
         <div id="ajax-products-view" style="width: 100%;">
@@ -360,148 +315,167 @@
     </div>
     <!-- bangles section end -->
     <!-- section footer start -->
-    <div class="section_footer modern" itemscope itemtype="http://schema.org/Organization">
-        <div class="container">
+      <div class="section_footer modern" itemscope itemtype="http://schema.org/Organization">
+         <div class="container">
             <div class="social-icons">
-                <a href="https://www.facebook.com/profile.php?id=61564164274643" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/gayathri_thread_couture/" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/+919360235889" target="_blank" rel="noopener noreferrer"><i
-                        class="fab fa-whatsapp"></i></a>
-                <a href="mailto:gayathrithreadcouture@gmail.com" target="_blank" rel="noopener noreferrer"><i
-                        class="fas fa-envelope"></i></a>
-                <a href="https://www.youtube.com/channel/UCoHIWtoKIckuutnIZl9dUTg" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+               <a href="https://www.facebook.com/profile.php?id=61564164274643" target="_blank"
+                  rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+               <a href="https://www.instagram.com/gayathri_thread_couture/" target="_blank" rel="noopener noreferrer"><i
+                     class="fab fa-instagram"></i></a>
+               <a href="https://wa.me/+919360235889" target="_blank" rel="noopener noreferrer"><i
+                     class="fab fa-whatsapp"></i></a>
+               <a href="mailto:gayathrithreadcouture@gmail.com" target="_blank" rel="noopener noreferrer"><i
+                     class="fas fa-envelope"></i></a>
+               <a href="https://www.youtube.com/channel/UCoHIWtoKIckuutnIZl9dUTg" target="_blank"
+                  rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="footer_section_2">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <h2 class="account_text">Contact</h2>
-                        <div class="call_text">
-                            <a href="mailto:gayathrithreadcouture@gmail.com"><span class="pet_text"
-                                    itemprop="email">Email: gayathrithreadcouture@gmail.com</span></a>
+               <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-3">
+                     <h2 class="account_text">Contact</h2>
+                     <div class="call_text">
+                        <a href="mailto:gayathrithreadcouture@gmail.com"><span class="pet_text" itemprop="email">Email:
+                              gayathrithreadcouture@gmail.com</span></a>
+                     </div>
+                     <div class="call_text">
+                        <a href="tel:+91 9360235889"><span class="pet_text" itemprop="telephone">Call us on: +(91)
+                              9360235889(10 AM - 5PM, Mon - Sat)</span></a>
+                     </div>
+                     <div class="call_text">
+                        <span class="pet_text" itemprop="email">WhatsApp: +(91) 9360235889</span>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-3">
+                     <h2 class="account_text">Information</h2>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Social">
+                        <a href="social.html"><span class="pet_text">Social</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="New Products">
+                        <a href="newproducts.html"><span class="pet_text">New Products</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Bangle Size">
+                        <a href="banglesize.html"><span class="pet_text">Bangle Size</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Jewelry Care Guide">
+                        <a href="jewelry-care-guide.html"><span class="pet_text">Jewelry Care Guide</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Best Sellers">
+                        <span class="pet_text">Best Sellers</span>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Our Stores">
+                        <a href="https://gayathrithreadcouture.myinstamojo.com"><span class="pet_text">Our Stores</span></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-3">
+                     <h2 class="account_text">Other</h2>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="About Us">
+                        <a href="about.html"><span class="pet_text" itemprop="about">About Us</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Privacy Policy">
+                        <a href="privacy.html"><span class="pet_text">Privacy Policy</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Terms & Conditions">
+                        <a href="terms.html"><span class="pet_text">Terms & Conditions</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Refund Policy">
+                        <a href="refund.html"><span class="pet_text">Refund Policy</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Return Policy">
+                        <a href="return.html"><span class="pet_text">Return Policy</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Cancellation Policy">
+                        <a href="cancel.html"><span class="pet_text">Cancellation Policy</span></a>
+                     </div>
+                     <div class="image-icon">
+                        <img src="../images/bulit-icon.png" alt="Contact Us">
+                        <a href="contact.html"><span class="pet_text">Contact Us</span></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-3">
+                     <h2 class="adderess_text">Instagram</h2>
+                     <div class="footer-img">
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <div class="footer-img">
+                                 <a href="https://www.instagram.com/reel/C_CoEwcSeP9/" itemprop="url" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <img src="../images/footer-1.png" alt="Instagram Post" style="width: 100%;">
+                                 </a>
+                              </div>
+                              <div class="footer-img">
+                                 <a href="https://www.instagram.com/reel/C-5c1GIyTnj/" itemprop="url" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <img src="../images/footer-2.png" alt="Instagram Post" style="width: 100%;">
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div class="footer-img">
+                                 <a href="https://www.instagram.com/reel/C-QVUoVy87H/" itemprop="url" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <img src="../images/footer-3.png" alt="Instagram Post" style="width: 100%;">
+                                 </a>
+                              </div>
+                              <div class="footer-img">
+                                 <a href="https://www.instagram.com/gayathri_thread_couture/" itemprop="url"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <img src="../images/footer-4.png" alt="Instagram Post" style="width: 100%;">
+                                 </a>
+                              </div>
+                           </div>
                         </div>
-                        <div class="call_text">
-                            <a href="tel:+91 9360235889"><span class="pet_text" itemprop="telephone">Call us on: +(91)
-                                    9360235889(10 AM - 5PM, Mon - Sat)</span></a>
-                        </div>
-                        <div class="call_text">
-                            <span class="pet_text" itemprop="email">WhatsApp: +(91) 9360235889</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <h2 class="account_text">Information</h2>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Social">
-                            <a href="social.html"><span class="pet_text">Social</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="New Products">
-                            <a href="newproducts.html"><span class="pet_text">New
-                                    Products</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Bangle Size">
-                            <a href="banglesize.html"><span class="pet_text">Bangle Size</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Best Sellers">
-                            <span class="pet_text">Best Sellers</span>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Our Stores">
-                            <a href="https://gayathrithreadcouture.myinstamojo.com"><span class="pet_text">Our
-                                    Stores</span></a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <h2 class="account_text">Other</h2>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="About Us">
-                            <a href="about.html"><span class="pet_text" itemprop="about">About Us</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Privacy Policy">
-                            <a href="privacy.html"><span class="pet_text">Privacy Policy</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Terms & Conditions">
-                            <a href="terms.html"><span class="pet_text">Terms & Conditions</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Refund Policy">
-                            <a href="refund.html"><span class="pet_text">Refund Policy</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Return Policy">
-                            <a href="return.html"><span class="pet_text">Return Policy</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Cancellation Policy">
-                            <a href="cancel.html"><span class="pet_text">Cancellation Policy</span></a>
-                        </div>
-                        <div class="image-icon">
-                            <img src="../images/bulit-icon.png" alt="Contact Us">
-                            <a href="contact.html"><span class="pet_text">Contact Us</span></a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <h2 class="adderess_text">Instagram</h2>
-                        <div class="footer-img">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="footer-img">
-                                        <a href="https://www.instagram.com/reel/C_CoEwcSeP9/" itemprop="url"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <img src="../images/footer-1.png" alt="Instagram Post" style="width: 100%;">
-                                        </a>
-                                    </div>
-                                    <div class="footer-img">
-                                        <a href="https://www.instagram.com/reel/C-5c1GIyTnj/" itemprop="url"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <img src="../images/footer-2.png" alt="Instagram Post" style="width: 100%;">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="footer-img">
-                                        <a href="https://www.instagram.com/reel/C-QVUoVy87H/" itemprop="url"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <img src="../images/footer-3.png" alt="Instagram Post" style="width: 100%;">
-                                        </a>
-                                    </div>
-                                    <div class="footer-img">
-                                        <a href="https://www.instagram.com/gayathri_thread_couture/" itemprop="url"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <img src="../images/footer-4.png" alt="Instagram Post" style="width: 100%;">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-    <!-- section footer end -->
-    <!-- copyright section start -->
-    <div class="copyright_section">
-        <div class="container">
+         </div>
+      </div>
+      <!-- section footer end -->
+      <!-- site disclosure section start -->
+      <div class="site_disclosure_section" style="background: #f8f9fa; padding: 20px 0; border-top: 1px solid #e9ecef;">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <p class="site_disclosure"
+                     style="color: #6c757d; font-size: 0.9rem; margin: 0; text-align: center; line-height: 1.6;">
+                     We improve our products and advertising by using Microsoft Clarity to see how you use our website.
+                     By using our site, you agree that we and Microsoft can collect and use this data.
+                     Our <a href="privacy.html" style="color: #667eea; text-decoration: none;">privacy
+                        statement</a> has more details.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- site disclosure section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
             <p class="copyright">©Copyrights 2026 All Rights Reserved.</p>
-        </div>
-    </div>
-    <!-- copyright section end -->
-    <!-- Whatapp Floater Section Start -->
-    <div class="social-chat-icons">
-        <div>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Whatapp Floater Section Start -->
+      <div class="social-chat-icons">
+         <div>
             <a href="https://wa.me/9360235889?text=Hi!" target="_blank" rel="noopener noreferrer">
-                <img src="../images/whatsapp.svg" width="40" class="chat-image-shadow" alt="Chat with us on WhatsApp">
+               <img src="../images/whatsapp.svg" width="40" class="chat-image-shadow" alt="Chat with us on WhatsApp">
             </a>
-        </div>
-    </div>
-    <!-- Whatapp Floater Section End -->
+         </div>
+      </div>
+      <!-- Whatapp Floater Section End -->
     <!-- Javascript files-->
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/popper.min.js" defer></script>
@@ -588,17 +562,8 @@
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
     <!-- End of HubSpot Embed Code -->
-    <!--Email Obfuscation-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var user = "gayathrithreadcouture";
-            var domain = "gmail.com";
-            var link = document.createElement("a");
-            link.href = "mailto:" + user + "@" + domain;
-            link.textContent = user + "@" + domain;
-            document.getElementById("email").appendChild(link);
-        });
-    </script>
+   <script src="../js/shared-page-chrome.js" defer></script>
+
 </body>
 
 </html>
