@@ -138,6 +138,28 @@
    <!-- End Meta Pixel Code --></head>
 
 <body>
+   <script>
+      if (new URLSearchParams(window.location.search).get("embed") === "1") {
+         document.documentElement.classList.add("embed-mode");
+      }
+   </script>
+   <style>
+      html.embed-mode .header_section,
+      html.embed-mode .announcementColor,
+      html.embed-mode .section_footer,
+      html.embed-mode .copyright_section,
+      html.embed-mode .site_disclosure_section,
+      html.embed-mode .social-chat-icons,
+      html.embed-mode .cookie-consent,
+      html.embed-mode .items-contact,
+      html.embed-mode .container > .d-flex.flex-wrap {
+         display: none !important;
+      }
+      html.embed-mode .shop_section_start {
+         padding-top: 1.5rem;
+         padding-bottom: 0.5rem;
+      }
+   </style>
    <noscript>
       <iframe class="d-none visibility-hidden" src="https://www.googletagmanager.com/ns.html?id=G-69JGKGLVNL" height="0"
          width="0"></iframe>
