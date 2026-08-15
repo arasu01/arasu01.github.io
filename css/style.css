@@ -223,8 +223,8 @@ button {
     float: left;
     background-image: url(../images/header-bg.png);
     height: auto;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 13.5px;
+    padding-bottom: 13.5px;
     background-size: 100%;
 }
 
@@ -1388,7 +1388,7 @@ button {
 .announcementColor {
     background-color: #006242;
     color: #fffeff;
-    height: 50px;
+    height: 37.5px;
  }
  .scrolling-text-container {
     width: 100%;  /* Width of the container */

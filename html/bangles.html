@@ -139,22 +139,6 @@
          box-sizing: border-box;
       }
 
-      #category-loading {
-         display: none;
-         text-align: center;
-         padding: 3rem;
-         color: #667eea;
-         font-weight: 600;
-      }
-
-      #category-frame {
-         width: 100%;
-         min-height: 70vh;
-         border: 0;
-         display: block;
-         background: #fff;
-      }
-
       @media (max-width: 480px) {
          .bangle-category-grid {
             flex-direction: column;
@@ -164,6 +148,142 @@
 
          .bangle-category-card {
             width: 100%;
+         }
+      }
+
+      /* Silk thread product grid (merged from casualbangles.html) */
+      /* custom.css defines .grid-container as display:grid, which squeezes our own grid into one column - override it */
+      .grid-container {
+         display: block;
+         width: 100%;
+         padding: 1.5rem 0;
+         background: #f9f9f9;
+         min-height: 200px;
+         box-sizing: border-box;
+      }
+
+      #products-container-silk,
+      #products-container-bridal {
+         display: grid;
+         grid-template-columns: repeat(4, minmax(0, 1fr));
+         gap: 1.5rem;
+         padding: 1.5rem;
+         background: #fff;
+         box-sizing: border-box;
+      }
+
+      #products-container-silk .product,
+      #products-container-bridal .product {
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+         background: #fff;
+         overflow: hidden;
+         border: 1px solid #e0e0e0;
+         border-radius: 8px;
+         padding: 1rem;
+         min-height: 550px;
+         display: flex;
+         flex-direction: column;
+      }
+
+      #products-container-silk .product:hover,
+      #products-container-bridal .product:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+         border-color: #ccc;
+      }
+
+      #products-container-silk .product__top,
+      #products-container-bridal .product__top {
+         width: 100%;
+         height: 150px;
+         margin-bottom: 1rem;
+         overflow: hidden;
+         border-radius: 6px;
+      }
+
+      #products-container-silk .product__thumbnail,
+      #products-container-bridal .product__thumbnail {
+         width: 100%;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      #products-container-silk .product__thumbnail img,
+      #products-container-bridal .product__thumbnail img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform 0.3s ease;
+         border-radius: 6px;
+      }
+
+      #products-container-silk .product:hover .product__thumbnail img,
+      #products-container-bridal .product:hover .product__thumbnail img {
+         transform: scale(1.05);
+      }
+
+      #products-container-silk .product__summary,
+      #products-container-bridal .product__summary {
+         text-align: center;
+      }
+
+      #products-container-silk .product__title,
+      #products-container-bridal .product__title {
+         font-size: 1rem;
+         margin: 0.5rem 0;
+         color: #333;
+         font-weight: 600;
+         white-space: normal;
+         word-wrap: break-word;
+         line-height: 1.3;
+         text-align: center;
+      }
+
+      #products-container-silk .text-muted.fs-12,
+      #products-container-bridal .text-muted.fs-12 {
+         color: #666;
+         font-size: 0.875rem;
+         margin-bottom: 0.5rem;
+      }
+
+      @media (max-width: 1200px) {
+         #products-container-silk,
+         #products-container-bridal {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+         }
+      }
+
+      @media (max-width: 768px) {
+         #products-container-silk,
+         #products-container-bridal {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            padding: 0.5rem;
+         }
+
+         #products-container-silk .product__top,
+         #products-container-bridal .product__top {
+            height: 120px;
+         }
+      }
+
+      @media (max-width: 480px) {
+         #products-container-silk,
+         #products-container-bridal {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 0.75rem;
+         }
+
+         #products-container-silk .product__top,
+         #products-container-bridal .product__top {
+            height: 100px;
+         }
+
+         #products-container-silk .product__title,
+         #products-container-bridal .product__title {
+            font-size: 0.75rem;
          }
       }
    </style>
@@ -215,16 +335,6 @@
       </div>
    </div>
    <!-- announcement section end -->
-   <div class="container">
-      <div class="d-flex flex-wrap">
-         <a href="tel:+91 9360235889" class="items-contact d-flex align-items-center gap-2">
-            <span>9360235889</span>
-         </a>
-         <a href="mailto:gayathrithreadcouture@gmail.com" class="items-contact d-flex align-items-center gap-2">
-            <span id="email"></span>
-         </a>
-      </div>
-   </div>
    <!--header section start -->
    <div class="header_section">
       <div class="container-fluid">
@@ -233,10 +343,7 @@
                <button type="button" class="menu_toggle_btn" onclick="openNav()" aria-label="Open Navigation Menu" aria-controls="myNav" aria-expanded="false" style="font-size:33px;cursor:pointer;color:#ffffff;background:transparent;border:0;padding:0;width:auto;line-height:1;"><img
                      src="../images/toggle-menu.png" alt="Toggle Menu" class="toggle_menu"></button>
             </div>
-            <div class="col-sm-6 col-lg-2">
-               <!-- <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div> -->
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-6 col-lg-10">
                <div class="menu_text">
                   <ul>
                      <li><a href="../index.html">Home</a></li>
@@ -268,19 +375,35 @@
             class="bangle-category-card"
             id="category-bridal"
             data-category="bridal"
-            data-src="bridal.html?embed=1"
             aria-pressed="false">BRIDAL SETS</button>
          <button type="button"
             class="bangle-category-card"
             id="category-silk-thread"
             data-category="silk-thread"
-            data-src="casualbangles.html?embed=1"
             aria-pressed="false">CASUAL SETS</button>
       </div>
    </div>
    <div class="category-content-panel" id="category-panel" hidden>
-      <div id="category-loading">Loading collection…</div>
-      <iframe id="category-frame" title="Bangle collection" loading="lazy"></iframe>
+      <div class="category-content" id="panel-bridal" hidden>
+         <div class="shop_section_start layout_padding">
+            <div class="container">
+               <h2 class="center_text" style="width: 85%; font-size: 2rem; line-height: 1.2;">Premium Bridal Bangles</h2>
+            </div>
+         </div>
+         <div class="grid-container">
+            <div id="products-container-bridal"></div>
+         </div>
+      </div>
+      <div class="category-content" id="panel-silk-thread" hidden>
+         <div class="shop_section_start layout_padding">
+            <div class="container">
+               <h2 class="center_text" style="width: 75%; font-size: 2rem; line-height: 1.2;">SILK THREAD BANGLES</h2>
+            </div>
+         </div>
+         <div class="grid-container">
+            <div id="products-container-silk"></div>
+         </div>
+      </div>
    </div>
    <!-- category sections end -->
    <!-- section footer start -->
@@ -491,11 +614,520 @@
    <!-- End of HubSpot Embed Code -->
 
    <script>
+      // Silk Thread Bangles product data (merged from casualbangles.html) - covers images/bangles/1.jpg to 32.jpg
+      const silkThreadProducts = [
+         {
+            id: 1,
+            storeId: 1,
+            name: "Golden Silk Thread Bangle with Purple Triangle Kundan on Silver Coins",
+            image: "../images/bangles/1.jpg",
+            description: "Golden silk-thread bangles lined with engraved silver coin discs, each set with a purple triangle kundan stone.",
+            materials: "Golden silk threads, silver coin discs, purple triangle kundan stones",
+            occasions: "Festivals, Weddings, Traditional events",
+            care: "Handle coin discs gently, avoid moisture, individual storage"
+         },
+         {
+            id: 2,
+            storeId: 2,
+            name: "Golden Silk Thread Bangle with Teardrop Kundan Stones",
+            image: "../images/bangles/2.jpg",
+            description: "Golden silk-thread bangles set with a continuous row of teardrop-cut champagne kundan stones in gold bezels.",
+            materials: "Golden silk threads, teardrop kundan stones, gold-toned bezels",
+            occasions: "Weddings, Festivals, Bridal wear",
+            care: "Preserve stone bezels, gentle cleaning, protective storage"
+         },
+         {
+            id: 3,
+            storeId: 3,
+            name: "Golden Silk Thread Bangle with Blue Floral Kundan and Coin Accents",
+            image: "../images/bangles/3.jpg",
+            description: "Golden silk-thread bangles with a floral kundan motif in sapphire-blue and clear stones, paired with engraved coin sections.",
+            materials: "Golden silk threads, blue and clear kundan stones, engraved coin discs",
+            occasions: "Weddings, Festivals, Bridal wear",
+            care: "Protect stone work, gentle handling, dry storage"
+         },
+         {
+            id: 5,
+            storeId: 5,
+            name: "Purple and Gold Silk Thread Bangle with Chevron Stone Pattern",
+            image: "../images/bangles/5.jpg",
+            description: "Purple and gold silk-thread bangles with an interlocking chevron pattern of purple triangle stones.",
+            materials: "Purple and gold silk threads, triangle-cut purple stones",
+            occasions: "Festivals, Parties, Traditional wear",
+            care: "Keep stones secure, gentle cleaning, separate storage"
+         },
+         {
+            id: 6,
+            storeId: 6,
+            name: "Red Silk Thread Bangle Set with Gold Round Studs",
+            image: "../images/bangles/6.jpg",
+            description: "A stack of vivid red silk-thread bangles, each finished with spaced gold-toned round stud accents.",
+            materials: "Red silk threads, gold-toned round studs",
+            occasions: "Weddings, Festivals, Celebrations",
+            care: "Handle studs gently, avoid snagging, careful storage"
+         },
+         {
+            id: 7,
+            storeId: 7,
+            name: "Golden Yellow Silk Thread Bangle with Pink Stone on Lakshmi Coin",
+            image: "../images/bangles/7.jpg",
+            description: "Golden-yellow silk-thread bangles adorned with silver-toned discs and bright pink centre stones for a festive traditional look.",
+            materials: "Golden yellow silk threads, silver discs, pink stones",
+            occasions: "Festivals, Weddings, Traditional events",
+            care: "Handle stone discs gently, avoid moisture, individual storage"
+         },
+         {
+            id: 8,
+            storeId: 8,
+            name: "Mustard Yellow Silk Thread Bangle with Teardrop Kundan",
+            image: "../images/bangles/8.jpg",
+            description: "Mustard-yellow silk-thread bangle with a double row of teardrop kundan stones in gold-toned settings.",
+            materials: "Mustard yellow silk threads, teardrop kundan stones, gold-toned frames",
+            occasions: "Weddings, Festivals, Traditional events",
+            care: "Preserve stone settings, gentle cleaning, protective storage"
+         },
+         {
+            id: 9,
+            storeId: 9,
+            name: "Golden Yellow Silk Thread Bangle with Blue Floral Kundan",
+            image: "../images/bangles/9.jpg",
+            description: "Golden-yellow silk-thread bangles with floral kundan work featuring sapphire-blue centre stones and clear teardrop petals.",
+            materials: "Golden yellow silk threads, blue and clear kundan stones, gold frames",
+            occasions: "Weddings, Festivals, Bridal wear",
+            care: "Protect stone work, gentle handling, dry storage"
+         },
+         {
+            id: 10,
+            storeId: 10,
+            name: "Royal Blue Silk Thread Bangle Set with Stone Work",
+            image: "../images/bangles/10.jpg",
+            description: "A stack of royal blue silk-thread bangles with gold-rimmed stones and teardrop blue accents for a bold traditional set.",
+            materials: "Royal blue silk threads, kundan stones, gold-toned settings",
+            occasions: "Weddings, Festivals, Formal gatherings",
+            care: "Handle stones carefully, avoid moisture, protective storage"
+         },
+         {
+            id: 11,
+            storeId: 11,
+            name: "Golden Yellow Silk Thread Bangle with Purple Triangle Stones",
+            image: "../images/bangles/11.jpg",
+            description: "Golden-yellow silk-thread bangles with interlocking purple triangular stones in gold borders for a geometric ethnic look.",
+            materials: "Golden yellow silk threads, purple triangle stones, gold frames",
+            occasions: "Festivals, Parties, Traditional wear",
+            care: "Keep stones secure, gentle cleaning, separate storage"
+         },
+         {
+            id: 12,
+            storeId: 12,
+            name: "Red Silk Thread Bangle Set with Gold Studs",
+            image: "../images/bangles/12.jpg",
+            description: "A vibrant red silk-thread bangle stack studded with gold-toned circular accents—classic for festive and bridal looks.",
+            materials: "Red silk threads, gold-toned studs, secure attachments",
+            occasions: "Weddings, Festivals, Celebrations",
+            care: "Handle studs gently, avoid snagging, careful storage"
+         },
+         {
+            id: 13,
+            storeId: 13,
+            name: "Golden Silk Thread Bangle with Multicolour Square Mirror Work",
+            image: "../images/bangles/13.jpg",
+            description: "Golden silk-thread bangles set with multicolour square mirror pieces in silver frames for a layered ethnic look.",
+            materials: "Golden silk threads, multicolour square mirrors, silver frames",
+            occasions: "Festivals, Parties, Traditional wear",
+            care: "Handle mirrors carefully, avoid impact, dry storage"
+         },
+         {
+            id: 14,
+            storeId: 14,
+            name: "Purple Silk Thread Bangle with Square Stones",
+            image: "../images/bangles/14.jpg",
+            description: "Deep purple silk-thread bangles lined with square purple stones in gold frames for a rich, elegant finish.",
+            materials: "Purple silk threads, square purple stones, gold frames",
+            occasions: "Evening events, Festivals, Formal wear",
+            care: "Preserve stone band, avoid moisture, dry storage"
+         },
+         {
+            id: 15,
+            storeId: 15,
+            name: "Crimson Red Silk Thread Bangle Set with Stone Work",
+            image: "../images/bangles/15.jpg",
+            description: "Crimson red silk-thread bangles densely set with red, clear, and dark accent stones in gold frames—tied as a festive set.",
+            materials: "Crimson silk threads, red and clear stones, gold settings",
+            occasions: "Weddings, Festivals, Traditional ceremonies",
+            care: "Preserve stone work, gentle handling, proper storage"
+         },
+         {
+            id: 16,
+            storeId: 16,
+            name: "Yellow Silk Thread Bangle Set with Lakshmi Coins",
+            image: "../images/bangles/16.jpg",
+            description: "Lemon-yellow silk-thread set mixing square-studded bangles with wider silver Lakshmi-coin bangles for auspicious festive wear.",
+            materials: "Yellow silk threads, gold square studs, silver Lakshmi coins",
+            occasions: "Festivals, Weddings, Auspicious gatherings",
+            care: "Handle coins gently, dry storage, careful cleaning"
+         },
+         {
+            id: 17,
+            storeId: 17,
+            name: "Yellow Silk Thread Bangle with Silver Kasu Coins",
+            image: "../images/bangles/17.jpg",
+            description: "Bright yellow silk-thread bangles edged with silver kasu coins featuring traditional deity motifs.",
+            materials: "Yellow silk threads, silver kasu coins, traditional motifs",
+            occasions: "Festivals, Temple visits, Traditional wear",
+            care: "Polish coins gently, avoid moisture, dry storage"
+         },
+         {
+            id: 18,
+            storeId: 18,
+            name: "Mustard Yellow Silk Thread Bangle with Turquoise Stones",
+            image: "../images/bangles/18.jpg",
+            description: "Mustard-yellow silk-thread bangles with a continuous row of turquoise square stones in gold settings.",
+            materials: "Mustard yellow silk threads, turquoise square stones, gold frames",
+            occasions: "Festivals, Parties, Casual elegance",
+            care: "Handle stones gently, avoid moisture, careful storage",
+            colour: "Green"
+         },
+         {
+            id: 19,
+            storeId: 18,
+            name: "Royal Blue Square Stone Gold Bangle",
+            image: "../images/bangles/19.jpg",
+            description: "Gold-toned bangles densely set with square-cut royal blue stones for a bold traditional statement.",
+            materials: "Gold-toned base, royal blue square stones, metal frames",
+            occasions: "Weddings, Festivals, Formal events",
+            care: "Preserve stone settings, gentle cleaning, dry storage",
+            colour: "Blue"
+         },
+         {
+            id: 20,
+            storeId: 18,
+            name: "Yellow Silk Thread Bangle with Square Mirror Work",
+            image: "../images/bangles/20.jpg",
+            description: "Golden-yellow silk-thread bangles lined with square mirror pieces in silver frames for classic reflective sparkle.",
+            materials: "Yellow silk threads, square mirrors, silver frames",
+            occasions: "Festivals, Cultural events, Bridal wear",
+            care: "Handle mirrors carefully, avoid impact, dry storage",
+            colour: "White"
+         },
+         {
+            id: 21,
+            storeId: 18,
+            name: "Gold Silk Thread Bangle with Pink Square Stones",
+            image: "../images/bangles/21.jpg",
+            description: "Golden silk-thread bangles with a continuous band of bright pink square stones in gold settings.",
+            materials: "Golden silk threads, pink square stones, gold frames",
+            occasions: "Weddings, Parties, Festive occasions",
+            care: "Preserve stone band, gentle cleaning, dry storage",
+            colour: "Pink"
+         },
+         {
+            id: 22,
+            storeId: 18,
+            name: "Gold Silk Thread Bangle with Ruby Red Square Stones",
+            image: "../images/bangles/22.jpg",
+            description: "Golden silk-thread bangles featuring a continuous row of faceted ruby-red square stones in gold frames.",
+            materials: "Golden silk threads, ruby red square stones, gold frames",
+            occasions: "Weddings, Festivals, Traditional celebrations",
+            care: "Preserve stone details, gentle handling, dry storage",
+            colour: "Red"
+         },
+         {
+            id: 23,
+            storeId: 23,
+            name: "Multicolour Square Stone Silk Thread Bangle Set",
+            image: "../images/bangles/23.jpg",
+            description: "A colourful silk-thread set with pink, cyan, red, clear, and royal-blue square-stone pairs—mix and match for festive stacks.",
+            materials: "Silk threads, multicolour square stones, metal frames",
+            occasions: "Festivals, Parties, Gift sets",
+            care: "Store pairs together, gentle cleaning, dry storage"
+         },
+         {
+            id: 24,
+            storeId: 24,
+            name: "Coral Pink Silk Thread Bangle with Marquise Kundan Cluster",
+            image: "../images/bangles/24.jpg",
+            description: "Coral-pink silk-thread bangles with a vertical cluster of marquise and round kundan stones in gold bezels.",
+            materials: "Coral pink silk threads, marquise kundan stones, gold bezels",
+            occasions: "Weddings, Parties, Festive wear",
+            care: "Handle stones gently, dry storage"
+         },
+         {
+            id: 25,
+            storeId: 25,
+            name: "Neon Green Silk Thread Bangle with Marquise Kundan Cluster",
+            image: "../images/bangles/25.jpg",
+            description: "Neon-green silk-thread bangles accented by a cluster of marquise and round kundan stones in gold settings.",
+            materials: "Neon green silk threads, marquise kundan stones, gold settings",
+            occasions: "Festivals, Parties, Bold ethnic looks",
+            care: "Preserve bright colour, gentle cleaning, dry storage"
+         },
+         {
+            id: 26,
+            storeId: 26,
+            name: "Mustard Yellow Temple Kasu Silk Thread Bangle",
+            image: "../images/bangles/26.jpg",
+            description: "Mustard-yellow silk-thread bangles with gold kasu coins, lotus accents, and maroon stone details in temple-jewelry style.",
+            materials: "Mustard yellow silk threads, gold kasu coins, lotus charms, stones",
+            occasions: "Weddings, Temple festivals, Traditional ceremonies",
+            care: "Handle charms gently, dry storage, careful cleaning"
+         },
+         {
+            id: 27,
+            storeId: 27,
+            name: "Golden Yellow Multicolour Stone Silk Thread Bangle",
+            image: "../images/bangles/27.jpg",
+            description: "Golden-yellow silk-thread bangles studded with multicolour stones in varied shapes for a lively festive look.",
+            materials: "Golden yellow silk threads, multicolour stones, gold frames",
+            occasions: "Festivals, Parties, Celebrations",
+            care: "Handle mixed stones gently, dry storage"
+         },
+         {
+            id: 28,
+            storeId: 28,
+            name: "Orange Silk Thread Bangle with Diamond Mirror Cluster",
+            image: "../images/bangles/28.jpg",
+            description: "Vibrant orange silk-thread bangles with a diagonal cluster of square mirrors and pearl bead accents.",
+            materials: "Orange silk threads, square mirrors, pearl beads, gold frames",
+            occasions: "Festivals, Celebrations, Casual ethnic wear",
+            care: "Preserve bead work, gentle cleaning, dry storage"
+         },
+         {
+            id: 29,
+            storeId: 29,
+            name: "Peacock Blue Silk Thread Bangle with Multicolour Square Stones",
+            image: "../images/bangles/29.jpg",
+            description: "Peacock-blue silk-thread bangles with a diagonal cluster of multicolour square stones in gold bezels.",
+            materials: "Peacock blue silk threads, multicolour square stones, gold bezels",
+            occasions: "Festivals, Parties, Everyday ethnic wear",
+            care: "Handle stones gently, dry storage"
+         },
+         {
+            id: 30,
+            storeId: 30,
+            name: "Emerald Green Silk Thread Bangle with Pearl Floral Work",
+            image: "../images/bangles/30.jpg",
+            description: "Emerald green silk-thread bangles with floral green-stone clusters centred by cream pearls and gold accents.",
+            materials: "Emerald green silk threads, green stones, pearls, gold beads",
+            occasions: "Weddings, Festivals, Bridal wear",
+            care: "Handle pearls carefully, gentle cleaning, dry storage"
+         },
+         {
+            id: 31,
+            storeId: 31,
+            name: "Yellow Silk Thread Bangle with White and Yellow Square Kundan",
+            image: "../images/bangles/31.jpg",
+            description: "Yellow silk-thread bangles set with alternating white and yellow square kundan stones in gold frames.",
+            materials: "Yellow silk threads, white and yellow square kundan stones, gold frames",
+            occasions: "Festivals, Weddings, Bold ethnic looks",
+            care: "Preserve stone rows, gentle cleaning, dry storage"
+         },
+         {
+            id: 32,
+            storeId: 32,
+            name: "Mustard Yellow Silk Thread Bangle with Dark Mirror Work",
+            image: "../images/bangles/32.jpg",
+            description: "Mustard-yellow silk-thread bangles with a centre line of dark square mirrors flanked by silver studs.",
+            materials: "Mustard yellow silk threads, dark mirrors, silver studs",
+            occasions: "Festivals, Casual ethnic wear, Parties",
+            care: "Handle mirrors carefully, dry storage",
+            colour: "Yellow"
+         }
+      ];
+
+
+      function generateSilkThreadProducts() {
+         const container = document.getElementById("products-container-silk");
+         if (!container || container.dataset.rendered) return;
+
+         const productsHTML = silkThreadProducts.map(product => `
+             <div class="product" style="cursor: pointer;" title="Click to view details">
+                 <div class="product__top">
+                     <div class="product__thumbnail">
+                         <img src="${product.image}"
+                              loading="lazy"
+                              alt="${product.name}"
+                              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                         <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
+                     </div>
+                 </div>
+                 <div class="product__summary" style="padding: 15px;">
+                     <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Silk Thread Bangles</div>
+                     <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
+                     <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
+                     <div style="margin-top: 10px;">
+                         <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials}</div>
+                         <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Perfect for:</strong> ${product.occasions}</div>
+                         <div style="font-size: 0.7rem; color: #888;"><strong>Care:</strong> ${product.care}</div>
+                     </div>
+                     <div style="margin-top: 12px; text-align: center;">
+                         <button onclick="showSilkThreadProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                             <i class="fas fa-info-circle"></i> View Details
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         `).join('');
+
+         container.innerHTML = productsHTML;
+         container.dataset.rendered = "true";
+      }
+
+      function showSilkThreadProductDetails(productId) {
+         const product = silkThreadProducts.find(p => p.id === productId);
+         if (!product) return;
+
+         const modalHTML = `
+            <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+               <div style="background: white; border-radius: 15px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;">
+                  <button onclick="closeSilkThreadProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
+                  <div style="padding: 30px;">
+                     <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
+                     <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                     <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description}</p>
+
+                     <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h4 style="color: #333; margin-bottom: 15px; text-align: center;">Product Details</h4>
+                        <div style="margin-bottom: 12px;"><strong>Materials:</strong> ${product.materials}</div>
+                        <div style="margin-bottom: 12px;"><strong>Perfect Occasions:</strong> ${product.occasions}</div>
+                        <div><strong>Care Instructions:</strong> ${product.care}</div>
+                     </div>
+
+                     <div style="text-align: center;">
+                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; margin-right: 10px; font-weight: 600;">
+                           <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                        <a href="https://gayathrithreadcouture.myinstamojo.com/product/bangle-${product.storeId}?Colour=${product.colour}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                           <i class="fas fa-shopping-cart"></i> Shop Online
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         `;
+
+         document.body.insertAdjacentHTML('beforeend', modalHTML);
+         document.body.style.overflow = 'hidden';
+      }
+
+      function closeSilkThreadProductModal() {
+         const modal = document.getElementById('productModal');
+         if (modal) {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+         }
+      }
+
+      // Premium Bridal Bangles product data
+      const bridalProducts = [
+         {
+            id: 1,
+            storeId: 1,
+            name: "Red and Gold Bridal Silk Thread Bangle Set with Ganesha Motifs",
+            image: "../images/bangles/bridal/1.jpg",
+            description: "A full bridal stack of red silk-thread bangles with kundan borders and gold Ganesha motif charms for auspicious wedding wear.",
+            materials: "Red silk threads, kundan stones, gold-toned Ganesha charms",
+            occasions: "Weddings, Bridal ceremonies, Traditional functions",
+            care: "Handle charms gently, avoid moisture, individual storage"
+         },
+         {
+            id: 2,
+            storeId: 2,
+            name: "Peacock Blue Bridal Silk Thread Bangle Set with Kundan Stones",
+            image: "../images/bangles/bridal/2.jpg",
+            description: "A vibrant peacock-blue bridal bangle set finished with scattered kundan stones for a striking festive statement.",
+            materials: "Peacock blue silk threads, kundan stones, gold-toned accents",
+            occasions: "Weddings, Engagements, Festive celebrations",
+            care: "Handle stones gently, avoid moisture, dry storage"
+         }
+      ];
+
+      function generateBridalProducts() {
+         const container = document.getElementById("products-container-bridal");
+         if (!container || container.dataset.rendered) return;
+
+         const productsHTML = bridalProducts.map(product => `
+             <div class="product" style="cursor: pointer;" title="Click to view details">
+                 <div class="product__top">
+                     <div class="product__thumbnail">
+                         <img src="${product.image}"
+                              loading="lazy"
+                              alt="${product.name}"
+                              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                         <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
+                     </div>
+                 </div>
+                 <div class="product__summary" style="padding: 15px;">
+                     <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Bridal Bangles</div>
+                     <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
+                     <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
+                     <div style="margin-top: 10px;">
+                         <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials}</div>
+                         <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Perfect for:</strong> ${product.occasions}</div>
+                         <div style="font-size: 0.7rem; color: #888;"><strong>Care:</strong> ${product.care}</div>
+                     </div>
+                     <div style="margin-top: 12px; text-align: center;">
+                         <button onclick="showBridalProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                             <i class="fas fa-info-circle"></i> View Details
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         `).join('');
+
+         container.innerHTML = productsHTML;
+         container.dataset.rendered = "true";
+      }
+
+      function showBridalProductDetails(productId) {
+         const product = bridalProducts.find(p => p.id === productId);
+         if (!product) return;
+
+         const modalHTML = `
+            <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+               <div style="background: white; border-radius: 15px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;">
+                  <button onclick="closeBridalProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
+                  <div style="padding: 30px;">
+                     <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
+                     <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                     <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description}</p>
+
+                     <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h4 style="color: #333; margin-bottom: 15px; text-align: center;">Product Details</h4>
+                        <div style="margin-bottom: 12px;"><strong>Materials:</strong> ${product.materials}</div>
+                        <div style="margin-bottom: 12px;"><strong>Perfect Occasions:</strong> ${product.occasions}</div>
+                        <div><strong>Care Instructions:</strong> ${product.care}</div>
+                     </div>
+
+                     <div style="text-align: center;">
+                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                           <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         `;
+
+         document.body.insertAdjacentHTML('beforeend', modalHTML);
+         document.body.style.overflow = 'hidden';
+      }
+
+      function closeBridalProductModal() {
+         const modal = document.getElementById('productModal');
+         if (modal) {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+         }
+      }
+   </script>
+   <script>
       (function () {
          const cards = document.querySelectorAll(".bangle-category-card");
          const panel = document.getElementById("category-panel");
-         const frame = document.getElementById("category-frame");
-         const loading = document.getElementById("category-loading");
+         const panels = {
+            bridal: document.getElementById("panel-bridal"),
+            "silk-thread": document.getElementById("panel-silk-thread")
+         };
 
          function setActive(category) {
             cards.forEach(function (card) {
@@ -506,14 +1138,19 @@
          }
 
          function loadCategory(category, pushHash, scrollToPanel) {
-            const card = document.querySelector('.bangle-category-card[data-category="' + category + '"]');
-            if (!card) return;
+            if (!panels[category]) return;
 
             setActive(category);
             panel.hidden = false;
-            if (loading) loading.style.display = "block";
-            frame.style.opacity = "0.35";
-            frame.src = card.dataset.src;
+            Object.keys(panels).forEach(function (key) {
+               panels[key].hidden = key !== category;
+            });
+
+            if (category === "silk-thread") {
+               generateSilkThreadProducts();
+            } else if (category === "bridal") {
+               generateBridalProducts();
+            }
 
             if (pushHash !== false) {
                history.replaceState(null, "", "#" + category);
@@ -523,20 +1160,6 @@
                panel.scrollIntoView({ behavior: "smooth", block: "start" });
             }
          }
-
-         frame.addEventListener("load", function () {
-            if (loading) loading.style.display = "none";
-            frame.style.opacity = "1";
-            try {
-               const doc = frame.contentDocument || frame.contentWindow.document;
-               if (doc && doc.body) {
-                  const height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, 600);
-                  frame.style.minHeight = height + "px";
-               }
-            } catch (e) {
-               frame.style.minHeight = "70vh";
-            }
-         });
 
          cards.forEach(function (card) {
             card.addEventListener("click", function () {
@@ -550,6 +1173,7 @@
       })();
    </script>
    <script src="../js/shared-page-chrome.js" defer></script>
+
 
 </body>
 
