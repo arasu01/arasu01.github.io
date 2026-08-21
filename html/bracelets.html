@@ -229,6 +229,76 @@
          font-size: 1.1rem;
       }
 
+      .bracelet-category-section {
+         clear: both;
+         float: left;
+         width: 100%;
+         padding: 1.5rem 1rem 2rem;
+         background: #f9f9f9;
+         box-sizing: border-box;
+      }
+
+      .bracelet-category-grid {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 1rem;
+         max-width: 700px;
+         margin: 0 auto;
+      }
+
+      .bracelet-category-card {
+         background: #fff;
+         border: 2px solid #e0e0e0;
+         border-radius: 8px;
+         cursor: pointer;
+         text-align: center;
+         padding: 0.85rem 2rem;
+         min-width: 160px;
+         font-size: 1.05rem;
+         font-weight: 600;
+         color: #333;
+         line-height: 1.2;
+         transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+         box-sizing: border-box;
+      }
+
+      .bracelet-category-card:hover,
+      .bracelet-category-card:focus {
+         border-color: #667eea;
+         color: #667eea;
+         outline: none;
+      }
+
+      .bracelet-category-card.active {
+         background: #667eea;
+         border-color: #667eea;
+         color: #fff;
+      }
+
+      .category-content-panel {
+         clear: both;
+         float: left;
+         width: 100%;
+         background: #fff;
+         border-top: 1px solid #e8e8e8;
+         min-height: 480px;
+         position: relative;
+         box-sizing: border-box;
+      }
+
+      @media (max-width: 480px) {
+         .bracelet-category-grid {
+            flex-direction: column;
+            align-items: stretch;
+            max-width: 280px;
+         }
+
+         .bracelet-category-card {
+            width: 100%;
+         }
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
          body #products-container,
@@ -335,16 +405,26 @@
       </div>
    </div>
    <!-- header section end -->
-   <div class="shop_section_start layout_padding">
-      <div class="container">
-         <h1 class="center_text" style="width: 75%; font-size: 2.5rem; line-height: 1.2;">BRACELETS</h1>
+   <!-- category sections start -->
+   <div class="bracelet-category-section">
+      <div class="bracelet-category-grid">
+         <button type="button" class="bracelet-category-card" data-category="adjustable" aria-pressed="false">ADJUSTABLE</button>
+         <button type="button" class="bracelet-category-card" data-category="beads" aria-pressed="false">BEADS</button>
+         <button type="button" class="bracelet-category-card" data-category="watch" aria-pressed="false">WATCH</button>
+         <button type="button" class="bracelet-category-card" data-category="fairy" aria-pressed="false">FAIRY</button>
       </div>
    </div>
-   <!-- bracelets section start -->
-   <div class="grid-container">
-      <div id="products-container"></div>
+   <div class="category-content-panel" id="category-panel" hidden>
+      <div class="shop_section_start layout_padding">
+         <div class="container">
+            <h1 class="center_text" id="category-title" style="width: 75%; font-size: 2.5rem; line-height: 1.2;"></h1>
+         </div>
+      </div>
+      <div class="grid-container">
+         <div id="products-container"></div>
+      </div>
    </div>
-   <!-- bracelets section end -->
+   <!-- category sections end -->
    <!-- section footer start -->
       <div class="section_footer modern" itemscope itemtype="http://schema.org/Organization">
          <div class="container">
@@ -1131,12 +1211,12 @@
          {
             id: 68,
             storeId: 68,
-            category: "Fairy Bracelet",
-            name: "Fairy Bracelet — Sunny Yellow Beads with White & Gold Florals",
-            image: "../images/bracelets/68.jpg",
-            description: "Cheerful translucent yellow bead strand with clustered white flowers at the top and matching flower charms on the extender chain.",
-            materials: "Glass beads, floral charms, gold-tone clasp and chain",
-            occasions: "Haldi functions, daytime events, cheerful gifting"
+            category: "Watch Bracelet",
+            name: "Blue Beaded Watch Bracelet",
+            image: "../images/bracelets/watch/1.jpg",
+            description: "A blue beaded bracelet with a quartz watch face and sparkling gold-tone accents.",
+            materials: "Glass beads, quartz watch face, gold-tone spacer beads, elastic cord",
+            occasions: "Everyday wear, casual outings, gifting"
          },
          {
             id: 69,
@@ -1231,7 +1311,7 @@
       ];
 
       // Function to generate products
-      function generateProducts() {
+      function generateProducts(category) {
          const container = document.getElementById("products-container");
          if (!container) {
             console.error("Products container not found!");
@@ -1239,11 +1319,15 @@
          }
 
          // Generate HTML for all products
-         const productsHTML = products.map(product => `
+         const categoryProducts = products.filter(function (product) {
+            return getBraceletCategory(product) === category;
+         });
+
+         const productsHTML = categoryProducts.map(product => `
             <div class="product" style="cursor: pointer;" title="Click to view details">
                 <div class="product__top">
                     <div class="product__thumbnail">
-                        <img src="${product.image}"
+                        <img src="${getBraceletImage(product)}"
                              loading="lazy"
                              alt="${product.name}"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -1271,11 +1355,22 @@
          container.innerHTML = productsHTML;
       }
 
-      // Wait for DOM to be fully loaded
-      if (document.readyState === 'loading') {
-         document.addEventListener('DOMContentLoaded', generateProducts);
-      } else {
-         generateProducts();
+      function getBraceletCategory(product) {
+         if (product.id >= 1 && product.id <= 3) return 'adjustable';
+         if ((product.id >= 63 && product.id <= 67) || (product.id >= 74 && product.id <= 77)) return 'fairy';
+         if (product.id === 68) return 'watch';
+         return 'beads';
+      }
+
+      function getBraceletImage(product) {
+         const category = getBraceletCategory(product);
+         if (category === 'adjustable') return `../images/bracelets/adjustable/${product.id}.jpg`;
+         if (category === 'fairy') {
+            const fairyImageNumber = product.id <= 67 ? product.id - 62 : product.id - 68;
+            return `../images/bracelets/fairy/${fairyImageNumber}.jpg`;
+         }
+         if (category === 'watch') return '../images/bracelets/watch/1.jpg';
+         return product.image;
       }
 
       // Function to show product details in a modal or detailed view
@@ -1288,7 +1383,7 @@
                <div style="background: white; border-radius: 15px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative;">
                   <button onclick="closeProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
                   <div style="padding: 30px;">
-                     <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
+                     <img src="${getBraceletImage(product)}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
                      <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
                      <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description || 'Beautiful handcrafted bracelet with elegant design and stylish appeal.'}</p>
 
@@ -1324,13 +1419,45 @@
          }
       }
 
-      // Also ensure it works after window load
-      window.addEventListener('load', function () {
-         const container = document.getElementById("products-container");
-         if (container && !container.innerHTML) {
-            generateProducts();
+   </script>
+   <script>
+      (function () {
+         const cards = document.querySelectorAll('.bracelet-category-card');
+         const panel = document.getElementById('category-panel');
+         const title = document.getElementById('category-title');
+         const titles = {
+            adjustable: 'ADJUSTABLE BRACELETS',
+            beads: 'BEADED BRACELETS',
+            watch: 'WATCH BRACELETS',
+            fairy: 'FAIRY BRACELETS'
+         };
+
+         function loadCategory(category, pushHash, scrollToPanel) {
+            if (!titles[category]) return;
+
+            cards.forEach(function (card) {
+               const isActive = card.dataset.category === category;
+               card.classList.toggle('active', isActive);
+               card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            title.textContent = titles[category];
+            panel.hidden = false;
+            generateProducts(category);
+
+            if (pushHash !== false) history.replaceState(null, '', '#' + category);
+            if (scrollToPanel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
          }
-      });
+
+         cards.forEach(function (card) {
+            card.addEventListener('click', function () {
+               loadCategory(card.dataset.category, true, true);
+            });
+         });
+
+         const hash = (location.hash || '').replace(/^#/, '');
+         const initialCategory = titles[hash] ? hash : 'beads';
+         loadCategory(initialCategory, false, false);
+      })();
    </script>
    <script src="../js/shared-page-chrome.js" defer></script>
 

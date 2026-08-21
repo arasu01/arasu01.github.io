@@ -471,17 +471,16 @@
     </script>
     <script>
         function getNewProductCategory(id) {
-            if (id >= 1 && id <= 3) return "Adjustable Bracelet";
             if (id >= 4 && id <= 10) return "U Pin";
-            return "Hair Band";
+            return "New Arrivals";
         }
 
         function renderNewProducts() {
             const grid = document.getElementById("new-products-grid");
             if (!grid) return;
 
-            const products = Array.from({ length: 34 }, (_, idx) => {
-                const id = idx + 1;
+            const productIds = [4, 5, 6, 7, 8, 9, 10, ...Array.from({ length: 67 }, (_, idx) => idx + 501)];
+            const products = productIds.map(id => {
                 const category = getNewProductCategory(id);
                 return {
                     id,
