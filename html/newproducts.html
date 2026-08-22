@@ -470,9 +470,28 @@
         });
     </script>
     <script>
+        const categoryById = {
+            4: "Saree Pin", 5: "Saree Pin", 6: "Saree Pin", 7: "Saree Pin", 8: "Saree Pin", 9: "Saree Pin", 10: "Beads Chain",
+            501: "Saree Pin", 502: "Saree Pin", 503: "Beads Chain", 504: "Beads Chain", 505: "Centre Clip", 506: "Centre Clip", 507: "Centre Clip", 508: "Centre Clip",
+            509: "Beads Chain", 510: "Invisible Chain", 511: "Beads Chain", 512: "Beads Chain", 513: "Centre Clip", 514: "Centre Clip", 515: "Centre Clip", 516: "Centre Clip", 517: "Centre Clip", 518: "Centre Clip", 519: "Centre Clip", 520: "Centre Clip",
+            521: "Centre Clip", 522: "Centre Clip", 523: "Hair Band", 524: "Centre Clip", 525: "Centre Clip", 526: "Centre Clip", 527: "Centre Clip", 528: "Centre Clip", 529: "Hair Band", 530: "Hair Band", 531: "Hair Band", 532: "Hair Band",
+            533: "Centre Clip", 534: "Centre Clip", 535: "Centre Clip", 536: "Centre Clip", 537: "Hair Band", 538: "Centre Clip", 539: "Centre Clip", 540: "Centre Clip", 541: "Beads Chain", 542: "Invisible Chain", 543: "Centre Clip", 544: "Beads Chain",
+            545: "Centre Clip", 546: "Centre Clip", 547: "Invisible Chain", 548: "Invisible Chain", 549: "Saree Pin", 550: "Saree Pin", 551: "Invisible Chain", 552: "Centre Clip", 553: "Hair Band", 554: "Hair Band", 555: "Centre Clip",
+            556: "Hair Band", 557: "Hair Band", 558: "Hair Band", 559: "Hair Band", 560: "Hair Band", 561: "Beads Chain", 562: "Invisible Chain", 563: "Beads Chain", 564: "Beads Chain", 565: "Centre Clip", 566: "Centre Clip", 567: "Bracelet"
+        };
+
+        const productTitles = {
+            4: "Green Floral Saree Pin", 5: "Blue Floral Saree Pin", 6: "Magenta Green Floral Saree Pin", 7: "White Floral Saree Pin", 8: "Blue Peacock Floral Saree Pin", 9: "Blue Peacock Saree Pin", 10: "Pink Beaded Chain",
+            501: "Pink Floral Saree Pin", 502: "Blue Floral Saree Pin", 503: "Pink and Clear Beaded Chain", 504: "Pink Butterfly Beaded Chain", 505: "Blue and Gold Centre Clip", 506: "Purple and Gold Centre Clip", 507: "Multicolor Floral Centre Clip", 508: "White Floral Centre Clip",
+            509: "Blue, Black and White Beaded Chain", 510: "Green Pendant Invisible Chain", 511: "Pink Beaded Chain", 512: "White Pearl Beaded Chain", 513: "Pink Floral Centre Clip", 514: "White Floral Centre Clip", 515: "Blue Floral Centre Clip", 516: "Red Floral Centre Clip", 517: "Pearl Floral Centre Clip", 518: "Black and Pearl Centre Clip", 519: "Red and Purple Pearl Centre Clip", 520: "Red Pearl Centre Clip",
+            521: "Orange, Purple and Red Centre Clip", 522: "White Floral Centre Clip", 523: "Red Floral Hair Band", 524: "Blue and Pink Floral Centre Clip", 525: "White Floral Centre Clip", 526: "Blue and Green Floral Centre Clip", 527: "Red Floral Centre Clip", 528: "Pearl Floral Centre Clip", 529: "Purple Floral Hair Band", 530: "Red Floral Hair Band", 531: "Yellow Pearl Hair Band", 532: "Green and Blue Floral Hair Band",
+            533: "Pink Leaf Centre Clip", 534: "White Leaf Centre Clip", 535: "Multicolor Leaf Centre Clip", 536: "Clear Leaf Centre Clip", 537: "Pink and Green Floral Hair Band", 538: "Clear Floral Centre Clip", 539: "White Floral Centre Clip", 540: "Pearl Floral Centre Clip", 541: "Green Beaded Chain", 542: "Gold Coin Invisible Chain", 543: "Pink and White Centre Clip", 544: "Pink Butterfly Beaded Chain",
+            545: "Blue and Turquoise Centre Clip", 546: "Purple Centre Clip", 547: "Multicolor Drop Invisible Chain", 548: "Infinity Invisible Chain", 549: "Pink Bridal Saree Pin", 550: "Green Bridal Saree Pin", 551: "Green Pendant Invisible Chain", 552: "Pink and White Centre Clip", 553: "Pink Beaded Hair Band", 554: "Yellow Pearl Hair Band", 555: "Green and Blue Hair Band",
+            556: "Pink Floral Hair Band", 557: "Green Floral Hair Band", 558: "Green and Blue Geometric Hair Band", 559: "Red Geometric Hair Band", 560: "Blue Floral Hair Band", 561: "White Pearl Beaded Chain", 562: "Plain Gold Invisible Chain", 563: "Green Pendant Beaded Chain", 564: "Red Coin Beaded Chain", 565: "Green Teardrop Centre Clip", 566: "Pink Floral Centre Clip", 567: "Pink Beaded Bracelet Watch"
+        };
+
         function getNewProductCategory(id) {
-            if (id >= 4 && id <= 10) return "U Pin";
-            return "New Arrivals";
+            return categoryById[id] || "Centre Clip";
         }
 
         function renderNewProducts() {
@@ -482,10 +501,12 @@
             const productIds = [4, 5, 6, 7, 8, 9, 10, ...Array.from({ length: 67 }, (_, idx) => idx + 501)];
             const products = productIds.map(id => {
                 const category = getNewProductCategory(id);
+                const title = productTitles[id] || `${category} - ${id}`;
                 return {
                     id,
                     category,
-                    title: `${category} - ${id}`,
+                    title,
+                    description: getProductDescription(category, title),
                     image: `../images/new/${id}.jpg`
                 };
             });
@@ -503,9 +524,24 @@
                     <div class="product__summary d-flex flex-column align-items-center gap-1 pb-3">
                         <div class="text-muted fs-12">${product.category}</div>
                         <h6 class="product__title text-truncate width--80">${product.title}</h6>
+                        <p class="product__description">${product.description}</p>
                     </div>
                 </div>
             `).join("");
+        }
+
+        function getProductDescription(category, title) {
+            const descriptions = {
+                "Bracelet": "Beaded bracelet with a decorative watch-style face, as shown in the product image.",
+                "Beads Chain": "Decorative chain made with beads and a visible pendant or centerpiece, as shown in the product image.",
+                "Centre Clip": "Decorative centre clip with colored stones, pearls, or floral detailing, as shown in the product image.",
+                "Hair Band": "Elastic hair band with a decorative floral or stone centerpiece, as shown in the product image.",
+                "Invisible Chain": "Fine invisible chain with a lightweight decorative pendant or centerpiece, as shown in the product image.",
+                "Saree Pin": "Long decorative saree pin with a floral or jeweled top, as shown in the product image.",
+                "Adjustable Bracelet": "Adjustable bracelet with decorative beads or stones, as shown in the product image.",
+                "Aligator Clip": "Alligator clip with decorative embellishment for securing hair, as shown in the product image."
+            };
+            return descriptions[category] || `${title} accessory shown in the product image.`;
         }
 
         document.addEventListener("DOMContentLoaded", renderNewProducts);
