@@ -8,6 +8,7 @@ import time
 import urllib.request
 from pathlib import Path
 from typing import Optional
+from urllib.parse import urlsplit, urlunsplit
 
 import openpyxl
 
@@ -16,50 +17,66 @@ BASE_URL = "https://www.gayathrithreadcouture.in"
 BRAND = "Gayathri Thread Couture"
 GOOGLE_CATEGORY = "Apparel & Accessories > Jewelry"
 FB_CATEGORY = "Clothing & Accessories > Jewelry"
+PRICE_FALLBACK = 0
+FETCH_LIVE_PRICES = False
 
 PAGES = [
     {
         "file": "html/bands.html",
         "prefix": "band",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/band-{p['id']}",
         "page_url": f"{BASE_URL}/html/bands.html",
     },
     {
-        "file": "html/casualbangles.html",
+        "file": "html/bangles.html",
         "prefix": "bangle",
+        "variable": "silkThreadProducts",
         "link": lambda p: (
             f"https://gayathrithreadcouture.myinstamojo.com/product/bangle-{p.get('storeId', p['id'])}"
             + (f"?Colour={p['colour']}" if p.get("colour") else "")
         ),
-        "page_url": f"{BASE_URL}/html/casualbangles.html",
+        "page_url": f"{BASE_URL}/html/bangles.html",
+    },
+    {
+        "file": "html/bangles.html",
+        "prefix": "bridal-bangle",
+        "variable": "bridalProducts",
+        "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/bangle-{p.get('storeId', p['id'])}",
+        "page_url": f"{BASE_URL}/html/bangles.html",
     },
     {
         "file": "html/bracelets.html",
         "prefix": "bracelet",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/bracelet-{p.get('storeId', p['id'])}",
         "page_url": f"{BASE_URL}/html/bracelets.html",
     },
     {
         "file": "html/centerclips.html",
         "prefix": "center",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/center-{p['id']}",
         "page_url": f"{BASE_URL}/html/centerclips.html",
     },
     {
         "file": "html/chains.html",
         "prefix": "chain",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/chain-{p['id']}",
         "page_url": f"{BASE_URL}/html/chains.html",
     },
     {
         "file": "html/clips.html",
         "prefix": "clip",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/clip-{p['id']}",
         "page_url": f"{BASE_URL}/html/clips.html",
     },
     {
         "file": "html/pins.html",
         "prefix": "pins",
+        "variable": "products",
         "link": lambda p: f"https://gayathrithreadcouture.myinstamojo.com/product/pins-{p['id']}",
         "page_url": f"{BASE_URL}/html/pins.html",
     },
@@ -68,7 +85,8 @@ PAGES = [
 EXTRACT_JS = r"""
 const fs = require('fs');
 const html = fs.readFileSync(process.argv[1], 'utf8');
-const marker = 'const products = [';
+const variable = process.argv[2] || 'products';
+const marker = `const ${variable} = [`;
 const start = html.indexOf(marker);
 if (start === -1) { console.log('[]'); process.exit(0); }
 let i = start + marker.length - 1;
@@ -91,7 +109,7 @@ for (; i < html.length; i++) {
     if (depth === 0) { i++; break; }
   }
 }
-const arr = html.slice(start + 'const products = '.length, i);
+    const arr = html.slice(start + marker.length - 1, i);
 try {
   const products = eval(arr);
   console.log(JSON.stringify(products));
@@ -102,9 +120,9 @@ try {
 """
 
 
-def extract_products(html_path: Path) -> list:
+def extract_products(html_path: Path, variable: str = "products") -> list:
     result = subprocess.run(
-        ["node", "-e", EXTRACT_JS, str(html_path)],
+        ["node", "-e", EXTRACT_JS, str(html_path), variable],
         capture_output=True,
         text=True,
         check=True,
@@ -114,11 +132,22 @@ def extract_products(html_path: Path) -> list:
 
 def to_image_url(image: str) -> str:
     if image.startswith("http"):
-        return image
-    return BASE_URL + "/" + image.lstrip("./").replace("../", "")
+        return canonical_url(image)
+    return canonical_url(BASE_URL + "/" + image.lstrip("./").replace("../", ""))
+
+
+def canonical_url(url: str) -> str:
+    parts = urlsplit(url.strip())
+    hostname = (parts.hostname or "").lower().removeprefix("www.")
+    netloc = hostname
+    if parts.port:
+        netloc += f":{parts.port}"
+    return urlunsplit((parts.scheme.lower(), netloc, parts.path, parts.query, parts.fragment))
 
 
 def fetch_instamojo_price(url: str, cache: dict) -> str:
+    if not FETCH_LIVE_PRICES:
+        return ""
     if url in cache:
         return cache[url]
     try:
@@ -126,7 +155,7 @@ def fetch_instamojo_price(url: str, cache: dict) -> str:
             url,
             headers={"User-Agent": "Mozilla/5.0 (compatible; GTC-CatalogBot/1.0)"},
         )
-        with urllib.request.urlopen(req, timeout=15) as resp:
+        with urllib.request.urlopen(req, timeout=5) as resp:
             html = resp.read().decode("utf-8", errors="replace")
         match = re.search(
             r'property="product:price:amount"\s+content="([^"]+)"', html
@@ -139,7 +168,7 @@ def fetch_instamojo_price(url: str, cache: dict) -> str:
     except Exception:
         price = ""
     cache[url] = price
-    time.sleep(0.15)
+    time.sleep(0.05)
     return price
 
 
@@ -184,7 +213,7 @@ def product_row(product: dict, config: dict, price_cache: dict) -> dict:
     material = product.get("materials")
     category_tag = product.get("category", config["prefix"].replace("-", " ").title())
     link = config["link"](product)
-    price = fetch_instamojo_price(link, price_cache)
+    price = PRICE_FALLBACK
 
     row = {
         "id": content_id,
@@ -211,9 +240,7 @@ def product_row(product: dict, config: dict, price_cache: dict) -> dict:
 
 
 def main():
-    template = Path(
-        "/Users/arasuvel.theerthapathy/Desktop/catalog_products_2026-07-10 00_13_52.xlsx"
-    )
+    template = ROOT / "catalog_products_filled.xlsx"
     output = template
 
     wb = openpyxl.load_workbook(template)
@@ -222,16 +249,15 @@ def main():
     headers = [ws.cell(2, c).value for c in range(1, ws.max_column + 1)]
     header_index = {h: i + 1 for i, h in enumerate(headers) if h}
 
-    # Remove example row (row 3)
     if ws.max_row >= 3:
-        ws.delete_rows(3, 1)
+        ws.delete_rows(3, ws.max_row - 2)
 
     all_rows = []
     price_cache = {}
     for config in PAGES:
         html_path = ROOT / config["file"]
-        products = extract_products(html_path)
-        print(f"{config['file']}: {len(products)} products")
+        products = extract_products(html_path, config.get("variable", "products"))
+        print(f"{config['file']} ({config.get('variable', 'products')}): {len(products)} products")
         for product in products:
             all_rows.append(product_row(product, config, price_cache))
 
@@ -239,7 +265,19 @@ def main():
     priced = sum(1 for r in all_rows if r.get("price"))
     print(f"Prices fetched: {priced}/{len(all_rows)}")
 
+    unique_rows = []
+    seen_images = set()
     for row_data in all_rows:
+        image = canonical_url(row_data.get("image_link", ""))
+        row_data["image_link"] = image
+        if image and image in seen_images:
+            continue
+        if image:
+            seen_images.add(image)
+        unique_rows.append(row_data)
+
+    print(f"Unique image URLs: {len(unique_rows)}")
+    for row_data in unique_rows:
         row_num = ws.max_row + 1
         for field, col in header_index.items():
             if field in row_data and row_data[field] is not None:
