@@ -44,6 +44,7 @@
    <!-- Font Awesome CDN -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    <link rel="stylesheet" type="text/css" href="../css/shared-page-chrome.css">
+   <link rel="stylesheet" type="text/css" href="../css/product-card-grid.css">
    <link rel="canonical" href="https://gayathrithreadcouture.in/html/chains.html">
    <meta property="og:type" content="website">
    <meta property="og:title" content="Gold Chains, Silver Chains & Designer Chains - Coming Soon | Gayathri Thread Couture">
@@ -65,91 +66,6 @@
    </script>
 
    <style>
-      .grid-container {
-         width: 100vw;
-         padding: 0;
-         margin: 0;
-         box-sizing: border-box;
-         overflow-x: hidden;
-      }
-
-      body #products-container,
-      html body #products-container {
-         display: grid !important;
-         grid-template-columns: repeat(4, minmax(250px, 1fr)) !important;
-         gap: 2rem !important;
-         width: calc(100vw - 4rem) !important;
-         max-width: calc(100vw - 4rem) !important;
-         margin: 0 auto !important;
-         box-sizing: border-box !important;
-         background: #fff !important;
-         padding: 4rem 2rem !important;
-      }
-
-      /* Product Item Styling */
-      .product {
-         position: relative;
-         overflow: hidden;
-         background: white;
-         transition: all 0.3s ease;
-         margin-bottom: 30px;
-         height: 100%;
-         display: flex;
-         flex-direction: column;
-         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      }
-
-      .product:hover {
-         transform: translateY(-5px);
-         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      }
-
-      .product__top {
-         position: relative;
-         overflow: hidden;
-         width: 100%;
-         padding-bottom: 100%;
-         height: 0;
-      }
-
-      .product__thumbnail {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-      }
-
-      .product__thumbnail img {
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-         transition: transform 0.5s ease;
-         background: #f9f9f9;
-      }
-
-      .product:hover .product__thumbnail img {
-         transform: scale(1.05);
-      }
-
-      .product__summary {
-         flex: 1;
-      }
-
-      .product__title {
-         font-weight: 600;
-         color: #333;
-         margin: 5px 0;
-         font-size: 1rem;
-         overflow: hidden;
-         text-overflow: ellipsis;
-         white-space: nowrap;
-         width: 100%;
-         max-width: 100%;
-         line-height: 1.4;
-         font-family: inherit;
-      }
-
       .coming-soon-container {
          text-align: center;
          padding: 60px 40px;
@@ -297,27 +213,7 @@
       }
 
       /* Responsive Design */
-      @media (max-width: 1200px) {
-         body #products-container,
-         html body #products-container {
-            grid-template-columns: repeat(3, minmax(220px, 1fr)) !important;
-         }
-      }
-
-      @media (max-width: 992px) {
-         body #products-container,
-         html body #products-container {
-            grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
-         }
-      }
-
       @media (max-width: 768px) {
-         body #products-container,
-         html body #products-container {
-            grid-template-columns: repeat(1, 1fr) !important;
-            padding: 2rem 1rem !important;
-         }
-
          .coming-soon-container {
             padding: 40px 20px;
          }
@@ -469,10 +365,12 @@
    <!-- chains section start -->
    <div class="grid-container">
               <div id="gtcNoResults" class="gtc-no-results">No chains match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
-        <div id="products-container"></div>
+        <div id="products-container" class="product-grid"></div>
    </div>
    <!-- chains section end -->
 
+   <script src="../js/store-price-fetch.js"></script>
+   <script src="../js/product-card-grid.js"></script>
    <script>
       // Chains Product List
       const products = [
@@ -748,55 +646,51 @@
          }
       ];
 
-      // Function to generate products
-      function generateProducts() {
+      let chainPriceData = {};
+
+      function getChainStoreUrl(product) {
+         return gtcStoreProductUrl("chain-" + product.id);
+      }
+
+      function getChainStorePrice(product) {
+         return gtcGetStorePriceForProduct(product.id, "chain", chainPriceData);
+      }
+
+      const cardOptions = {
+         getSearchText: function (product) {
+            return gtcBuildProductSearchText(product);
+         },
+         getLabel: function (product) {
+            return "Chain - " + product.id;
+         },
+         getProductName: function (product) {
+            return product.name;
+         },
+         getStoreUrl: function (product) {
+            return getChainStoreUrl(product);
+         },
+         getPrice: function (product) {
+            return getChainStorePrice(product);
+         },
+         getPriceKey: function (product) {
+            return product.id;
+         },
+         showDetailsFn: "showProductDetails",
+         findProduct: function (id) {
+            return products.find(function (p) { return p.id === id; });
+         }
+      };
+
+      async function generateProducts() {
          const container = document.getElementById("products-container");
          if (!container) {
             console.error("Products container not found!");
             return;
          }
 
-         // Check if there are products to display
          if (products && products.length > 0) {
-            // Generate HTML for all products
-            const productsHTML = products.map(product => {
-                const searchText = gtcBuildProductSearchText(product);
-                return `
-                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
-                  <div class="product__top">
-                     <div class="product__thumbnail">
-                        <img src="${product.image}"
-                             loading="lazy"
-                             alt="${product.name}"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
-                     </div>
-                  </div>
-                  <div class="product__summary" style="padding: 15px;">
-                     <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Handcrafted Chains</div>
-                     <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
-                     <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description || 'Beautiful handcrafted chain with elegant design.'}</p>
-                     <div style="margin-top: 10px;">
-                        <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials || 'High-quality metal, durable finish, secure clasps'}</div>
-                        <div style="font-size: 0.7rem; color: #888;"><strong>Perfect for:</strong> ${product.occasions || 'Daily wear, Special events, Gifting'}</div>
-                     </div>
-                     <div style="margin-top: 12px; text-align: center;">
-                        <button onclick="showProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                           <i class="fas fa-info-circle"></i> View Details
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            `;
-            }).join('');
-
-            // Set all HTML at once
-            container.innerHTML = productsHTML;
-            if (typeof gtcFilterPageProducts === "function") {
-                gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
-            }
+            gtcRenderProductGrid(container, products, cardOptions);
          } else {
-            // Show Coming Soon message
             container.innerHTML = `
                <div class="coming-soon-container">
                   <div class="coming-soon-content">
@@ -828,10 +722,18 @@
          }
       }
 
-      // Function to show product details in a modal
+      async function initPage() {
+         chainPriceData = await gtcLoadStorePriceFile("../data/chain-store-prices.json");
+         await generateProducts();
+      }
+
       function showProductDetails(productId) {
          const product = products.find(p => p.id === productId);
          if (!product) return;
+
+         const storePrice = getChainStorePrice(product);
+         const priceLabel = storePrice != null ? `₹${storePrice}` : "See store for price";
+         const storeUrl = getChainStoreUrl(product);
 
          const modalHTML = `
             <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -839,7 +741,8 @@
                   <button onclick="closeProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
                   <div style="padding: 30px;">
                      <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
-                     <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                     <h2 style="color: #333; margin-bottom: 8px; text-align: center;">${product.name}</h2>
+                     <p style="color: #667eea; font-weight: 600; text-align: center; margin-bottom: 15px;">Chain - ${product.id} · ${priceLabel}</p>
                      <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description || 'Beautiful handcrafted chain with elegant design and stylish appeal.'}</p>
 
                      <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
@@ -849,10 +752,10 @@
                      </div>
 
                      <div style="text-align: center;">
-                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                        <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; margin-right: 10px; font-weight: 600;">
                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
                         </a>
-                        <a href="https://gayathrithreadcouture.myinstamojo.com/product/chain-${product.id}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                        <a href="${storeUrl}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
                            <i class="fas fa-shopping-cart"></i> Shop Online
                         </a>
                      </div>
@@ -874,18 +777,16 @@
          }
       }
 
-      // Wait for DOM to be fully loaded
       if (document.readyState === 'loading') {
-         document.addEventListener('DOMContentLoaded', generateProducts);
+         document.addEventListener('DOMContentLoaded', initPage);
       } else {
-         generateProducts();
+         initPage();
       }
 
-      // Also ensure it works after window load
       window.addEventListener('load', function () {
          const container = document.getElementById("products-container");
          if (container && !container.innerHTML) {
-            generateProducts();
+            initPage();
          }
       });
    </script>

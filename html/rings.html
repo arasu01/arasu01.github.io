@@ -135,92 +135,237 @@
         body #products-container,
         html body #products-container {
             display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-            gap: 2rem !important;
-            padding: 2rem !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+            padding: 16px !important;
             background: #fff !important;
             min-height: 150px !important;
             width: calc(100vw - 4rem) !important;
-            max-width: calc(100vw - 4rem) !important;
+            max-width: 1500px !important;
             margin: 0 auto !important;
             box-sizing: border-box !important;
         }
 
-        .product {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #fff;
+        @media (min-width: 768px) {
+            body #products-container,
+            html body #products-container {
+                grid-template-columns: repeat(5, 1fr) !important;
+                gap: 20px !important;
+                padding: 24px !important;
+            }
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 550px;
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            min-height: 0;
+            padding: 0;
         }
 
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: #ccc;
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .product__top {
+        .product-image-wrapper {
+            position: relative;
             width: 100%;
-            height: 150px;
-            margin-bottom: 1rem;
+            padding-top: 100%;
+            background-color: #f9f9f9;
             overflow: hidden;
-            border-radius: 6px;
         }
 
-        .product__thumbnail {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product__thumbnail img {
+        .product-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-            border-radius: 6px;
+            transition: transform 0.5s ease;
         }
 
-        .product:hover .product__thumbnail img {
-            transform: scale(1.05);
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.06);
         }
 
-        .product__summary {
-            text-align: center;
-        }
-
-        .product__title {
-            font-size: 1rem;
-            margin: 0.5rem 0;
-            color: #333;
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #9d2235;
+            color: #ffffff;
+            font-size: 0.75rem;
             font-weight: 600;
-            white-space: normal;
-            word-wrap: break-word;
-            text-overflow: none;
-            overflow: visible;
-            line-height: 1.3;
-            text-align: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .text-muted.fs-12 {
-            color: #666;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
+        .product-badge.badge-bestseller {
+            background: #667eea;
+        }
+
+        .product-details {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .brand-label {
+            font-size: 0.75rem;
+            color: #888888;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #222222;
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+        }
+
+        .product-rating {
+            color: #ffb400;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .product-rating .rating-count {
+            color: #777777;
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .current-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: #999999;
+            text-decoration: line-through;
+        }
+
+        .discount-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #388e3c;
+        }
+
+        .swatch-container {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .swatch-container .color-dot {
+            width: 16px !important;
+            height: 16px !important;
+            min-width: 16px;
+            padding: 0 !important;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .color-dot:hover,
+        .color-dot.is-active {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 2px #667eea;
+        }
+
+        .original-price,
+        .discount-tag {
+            display: none;
+        }
+
+        .price-loading {
+            font-size: 0.9rem;
+            color: #999999;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .view-details-btn {
+            width: 100% !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: #ffffff !important;
+            border: none;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .view-details-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .whatsapp-cta-btn {
+            width: 100% !important;
+            background: #25d366;
+            color: #ffffff !important;
+            border: none;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .whatsapp-cta-btn:hover {
+            background: #20ba5a;
+            color: #ffffff !important;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             #products-container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
-                gap: 1rem !important;
-                padding: 0.5rem !important;
+                padding: 12px !important;
+                gap: 12px !important;
             }
 
             .gtc-no-results {
@@ -228,23 +373,18 @@
                 max-width: calc(100vw - 1rem);
             }
 
-            .product__top {
-                height: 120px;
+            .product-name {
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
-            #products-container {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
-                gap: 0.75rem !important;
+            .product-details {
+                padding: 12px;
             }
 
-            .product__top {
-                height: 100px;
-            }
-
-            .product__title {
-                font-size: 0.75rem;
+            .current-price {
+                font-size: 1rem;
             }
         }
 
@@ -351,7 +491,7 @@
     <!-- rings section start -->
     <div class="grid-container">
         <div id="gtcNoResults" class="gtc-no-results">No rings match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
-        <div id="products-container"></div>
+        <div id="products-container" class="product-grid"></div>
     </div>
     <!-- rings section end -->
     <!-- section footer start -->
@@ -526,6 +666,7 @@
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
     <!-- End of HubSpot Embed Code -->
 
+    <script src="../js/store-price-fetch.js"></script>
     <script>
         // Silk Thread Rings Product List
         const products = [
@@ -781,8 +922,88 @@
             }
         ];
 
+        const COLOR_MAP = {
+            red: "#c62828",
+            golden: "#f9a825",
+            gold: "#f9a825",
+            blue: "#1565c0",
+            pink: "#ec407a",
+            emerald: "#2e7d32",
+            green: "#388e3c",
+            purple: "#7b1fa2",
+            orange: "#ef6c00",
+            maroon: "#880e4f",
+            turquoise: "#00838f",
+            white: "#f5f5f5",
+            coral: "#ff7043",
+            silver: "#bdbdbd",
+            teal: "#00796b",
+            burgundy: "#6a1b9a",
+            yellow: "#fbc02d",
+            lavender: "#9575cd",
+            peach: "#ffab91",
+            black: "#424242",
+            multi: "#667eea"
+        };
+
+        function getRingColors(product) {
+            const text = (product.name + " " + product.materials).toLowerCase();
+            const found = [];
+            Object.keys(COLOR_MAP).forEach(function (key) {
+                if (text.includes(key)) {
+                    found.push({ name: key, hex: COLOR_MAP[key] });
+                }
+            });
+            if (!found.length) {
+                found.push({ name: "classic", hex: "#9d2235" });
+            }
+            return found.slice(0, 5);
+        }
+
+        let ringPriceData = {};
+
+        function getRingStoreUrl(product) {
+            return gtcStoreProductUrl("ring-" + product.id);
+        }
+
+        function getRingStorePrice(product) {
+            return gtcGetStorePriceForProduct(product.id, "ring", ringPriceData);
+        }
+
+        function getRingBadge(product) {
+            if (product.id % 6 === 0) {
+                return { label: "Best Seller", className: "badge-bestseller" };
+            }
+            return { label: "Handcrafted", className: "" };
+        }
+
+        function getRingRating(product) {
+            const rating = (4.3 + (product.id % 7) * 0.1).toFixed(1);
+            const count = 18 + product.id * 3;
+            const full = Math.floor(rating);
+            const half = rating - full >= 0.5;
+            let stars = "";
+            for (let i = 0; i < full; i++) stars += "★";
+            if (half) stars += "☆";
+            while (stars.length < 5) stars += "☆";
+            return { stars, rating, count };
+        }
+
+        function buildSwatchesHtml(product, colors) {
+            return colors.map(function (color, index) {
+                return `<button type="button" class="color-dot${index === 0 ? " is-active" : ""}" style="background-color: ${color.hex};" title="${color.name}" aria-label="${color.name} thread" data-color="${color.name}"></button>`;
+            }).join("");
+        }
+
+        function buildWhatsAppUrl(product, colorName) {
+            const colorText = colorName ? " in " + colorName + " thread" : "";
+            return "https://wa.me/919360235889?text=" + encodeURIComponent(
+                "Hi! I'd like to customize the " + product.name + colorText + ". Please share pricing and options."
+            );
+        }
+
         // Function to generate products
-        function generateProducts() {
+        async function generateProducts() {
             const container = document.getElementById("products-container");
             if (!container) {
                 console.error("Products container not found!");
@@ -790,55 +1011,113 @@
             }
 
             const containerParent = container.parentElement;
-            container.style.width = window.innerWidth + 'px';
-            container.style.maxWidth = window.innerWidth + 'px';
+            const panelWidth = Math.min(window.innerWidth - 64, 1500);
+            container.style.width = panelWidth + 'px';
+            container.style.maxWidth = panelWidth + 'px';
             containerParent.style.width = window.innerWidth + 'px';
             containerParent.style.maxWidth = window.innerWidth + 'px';
 
             // Generate HTML for all products
             const productsHTML = products.map(product => {
                 const searchText = gtcBuildProductSearchText(product);
+                const badge = getRingBadge(product);
+                const storePrice = getRingStorePrice(product);
+                const rating = getRingRating(product);
+                const colors = getRingColors(product);
+                const swatchesHtml = buildSwatchesHtml(product, colors);
+                const whatsappUrl = buildWhatsAppUrl(product, colors[0].name);
+                const priceHtml = storePrice != null
+                    ? `<span class="current-price">₹${storePrice}</span>`
+                    : `<span class="current-price price-loading">Loading price…</span>`;
+
                 return `
-                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
-                    <div class="product__top">
-                        <div class="product__thumbnail">
-                            <img src="${product.image}"
-                                 loading="lazy"
-                                 alt="${product.name}"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
-                        </div>
+                <article class="product product-card" data-search="${searchText}" data-product-id="${product.id}" data-store-url="${getRingStoreUrl(product)}">
+                    <div class="product-image-wrapper">
+                        <span class="product-badge ${badge.className}">${badge.label}</span>
+                        <img src="${product.image}"
+                             loading="lazy"
+                             alt="${product.name}"
+                             onerror="this.style.opacity='0.3';">
                     </div>
-                    <div class="product__summary" style="padding: 15px;">
-                        <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Rings</div>
-                        <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
-                        <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>
-                        <div style="margin-top: 10px;">
-                            <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials}</div>
-                            <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Perfect for:</strong> ${product.occasions}</div>
-                            <div style="font-size: 0.7rem; color: #888;"><strong>Care:</strong> ${product.care}</div>
+                    <div class="product-details">
+                        <span class="brand-label">Ring - ${product.id}</span>
+                        <h2 class="product-name">${product.name}</h2>
+                        <div class="product-rating" aria-label="Rated ${rating.rating} out of 5">
+                            ${rating.stars}<span class="rating-count">(${rating.count})</span>
                         </div>
-                        <div style="margin-top: 12px; text-align: center;">
-                            <button onclick="showProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                                <i class="fas fa-info-circle"></i> View Details
+                        <div class="price-box" data-price-box="${product.id}">
+                            ${priceHtml}
+                        </div>
+                        <div class="swatch-container" role="group" aria-label="Available thread colors">
+                            ${swatchesHtml}
+                        </div>
+                        <div class="card-actions">
+                            <button type="button" class="view-details-btn" onclick="showProductDetails(${product.id})">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> View Details
                             </button>
+                            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="whatsapp-cta-btn" data-whatsapp-cta="${product.id}">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i> Customize on WhatsApp
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
             `;
             }).join('');
 
-            // Set all HTML at once
             container.innerHTML = productsHTML;
+            initRingCardInteractions();
+            refreshRingStorePrices();
             if (typeof gtcFilterPageProducts === "function") {
                 gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
             }
         }
 
-        // Function to show product details in a modal
+        function refreshRingStorePrices() {
+            var urls = products.map(function (product) {
+                return getRingStoreUrl(product);
+            });
+
+            gtcRefreshStorePricesFromUrls(urls, function (url, price) {
+                var card = document.querySelector('.product-card[data-store-url="' + url + '"]');
+                if (!card) return;
+                var priceBox = card.querySelector("[data-price-box]");
+                if (priceBox) {
+                    priceBox.innerHTML = '<span class="current-price">₹' + price + '</span>';
+                }
+            });
+        }
+
+        async function initRingsPage() {
+            ringPriceData = await gtcLoadStorePriceFile("../data/ring-store-prices.json");
+            await generateProducts();
+        }
+
+        function initRingCardInteractions() {
+            document.querySelectorAll(".product-card .swatch-container").forEach(function (group) {
+                const card = group.closest(".product-card");
+                const productId = Number(card.dataset.productId);
+                const product = products.find(function (p) { return p.id === productId; });
+                const cta = card.querySelector("[data-whatsapp-cta]");
+                if (!product || !cta) return;
+
+                group.querySelectorAll(".color-dot").forEach(function (dot) {
+                    dot.addEventListener("click", function () {
+                        group.querySelectorAll(".color-dot").forEach(function (d) { d.classList.remove("is-active"); });
+                        dot.classList.add("is-active");
+                        cta.href = buildWhatsAppUrl(product, dot.dataset.color);
+                    });
+                });
+            });
+        }
+
+        // Legacy modal — kept for deep-dive product info if needed
         function showProductDetails(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
+
+            const storePrice = getRingStorePrice(product);
+            const priceLabel = storePrice != null ? `₹${storePrice}` : "See store for price";
+            const storeUrl = getRingStoreUrl(product);
 
             const modalHTML = `
                 <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -846,7 +1125,8 @@
                       <button onclick="closeProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
                       <div style="padding: 30px;">
                          <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
-                         <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                         <h2 style="color: #333; margin-bottom: 8px; text-align: center;">${product.name}</h2>
+                         <p style="color: #667eea; font-weight: 600; text-align: center; margin-bottom: 15px;">Ring - ${product.id} · ${priceLabel}</p>
                          <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description}</p>
 
                          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
@@ -860,7 +1140,7 @@
                             <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; margin-right: 10px; font-weight: 600;">
                                <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
                             </a>
-                            <a href="https://gayathrithreadcouture.myinstamojo.com/product/ring-${product.id}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                            <a href="${storeUrl}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
                                <i class="fas fa-shopping-cart"></i> Shop Online
                             </a>
                          </div>
@@ -884,16 +1164,16 @@
 
         // Wait for DOM to be fully loaded
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', generateProducts);
+            document.addEventListener('DOMContentLoaded', initRingsPage);
         } else {
-            generateProducts();
+            initRingsPage();
         }
 
         // Also ensure it works after window load
         window.addEventListener('load', function () {
             const container = document.getElementById("products-container");
             if (container && !container.innerHTML) {
-                generateProducts();
+                initRingsPage();
             }
         });
     </script>

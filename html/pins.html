@@ -62,6 +62,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" media="screen">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/product-card-grid.css">
    <link rel="stylesheet" type="text/css" href="../css/shared-page-chrome.css">
     <link rel="canonical" href="https://gayathrithreadcouture.in/html/pins.html">
     <script type="application/ld+json">
@@ -117,132 +118,6 @@
 
         button:hover {
             background-color: #218838;
-        }
-
-        /* Product Grid Styling - FORCE FULL WIDTH */
-        body .grid-container,
-        html body .grid-container {
-            padding: 2rem 0;
-            background: #f9f9f9;
-            min-height: 200px;
-            width: 100vw !important;
-            max-width: 100vw !important;
-            margin: 0 !important;
-            box-sizing: border-box;
-            position: relative;
-            left: 0;
-            right: 0;
-        }
-
-        body #products-container,
-        html body #products-container {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-            gap: 2rem !important;
-            padding: 2rem !important;
-            background: #fff !important;
-            min-height: 150px !important;
-            width: calc(100vw - 4rem) !important;
-            max-width: calc(100vw - 4rem) !important;
-            margin: 0 auto !important;
-            box-sizing: border-box !important;
-        }
-
-        .product {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #fff;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 550px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: #ccc;
-        }
-
-        .product__top {
-            width: 100%;
-            height: 150px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            border-radius: 6px;
-        }
-
-        .product__thumbnail {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product__thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            border-radius: 6px;
-        }
-
-        .product:hover .product__thumbnail img {
-            transform: scale(1.05);
-        }
-
-        .product__summary {
-            text-align: center;
-        }
-
-        .product__title {
-            font-size: 1rem;
-            margin: 0.5rem 0;
-            color: #333;
-            font-weight: 600;
-            white-space: normal;
-            word-wrap: break-word;
-            text-overflow: none;
-            overflow: visible;
-            line-height: 1.3;
-            text-align: center;
-        }
-
-        .text-muted.fs-12 {
-            color: #666;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #products-container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
-                gap: 1rem !important;
-                padding: 0.5rem !important;
-            }
-
-            .product__top {
-                height: 120px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #products-container {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
-                gap: 0.75rem !important;
-            }
-
-            .product__top {
-                height: 100px;
-            }
-
-            .product__title {
-                font-size: 0.75rem;
-            }
         }
         </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
@@ -341,7 +216,7 @@
     <!-- pins section start -->
     <div class="grid-container">
                 <div id="gtcNoResults" class="gtc-no-results">No pins match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
-        <div id="products-container"></div>
+        <div id="products-container" class="product-grid"></div>
     </div>
     <!-- pins section end -->
     <!-- section footer start -->
@@ -516,6 +391,8 @@
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47254545.js"></script>
     <!-- End of HubSpot Embed Code -->
 
+    <script src="../js/store-price-fetch.js"></script>
+    <script src="../js/product-card-grid.js"></script>
     <script>
         // Saree Pins Product List
         const products = [
@@ -594,65 +471,40 @@
             { id: 73, storeId: 73, name: "Saree Pins - 73", image: "../images/pins/73.jpg" },
         ];
 
-        // Function to generate products
-        function generateProducts() {
+        let pagePriceData = {};
+
+        const cardOptions = {
+            getLabel: (p) => `Pin - ${p.id}`,
+            getStoreUrl: (p) => gtcStoreProductUrl(`pins-${p.id}`),
+            getPriceKey: (p) => p.id,
+            getPrice: (p) => gtcGetPriceFromData(pagePriceData, p.id),
+            getSearchText: (p) => gtcBuildProductSearchText(p),
+            getProductName: (p) => p.name,
+            showDetailsFn: 'showProductDetails',
+            findProduct: (id) => products.find(p => p.id === id)
+        };
+
+        async function generateProducts() {
             const container = document.getElementById("products-container");
             if (!container) {
                 console.error("Products container not found!");
                 return;
             }
-
-            // Force full width programmatically to ensure it works
-            const containerParent = container.parentElement;
-            container.style.width = window.innerWidth + 'px';
-            container.style.maxWidth = window.innerWidth + 'px';
-            containerParent.style.width = window.innerWidth + 'px';
-            containerParent.style.maxWidth = window.innerWidth + 'px';
-
-            // Generate HTML for all products with enhanced content
-            const productsHTML = products.map(product => {
-                const searchText = gtcBuildProductSearchText(product);
-                return `
-                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
-                    <div class="product__top">
-                        <div class="product__thumbnail">
-                            <img src="${product.image}"
-                                 loading="lazy"
-                                 alt="${product.name}"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div style="display:none; padding: 20px; text-align: center; color: #999;">Image not found</div>
-                        </div>
-                    </div>
-                    <div class="product__summary" style="padding: 15px;">
-                        <div class="text-muted fs-12" style="color: #667eea; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Saree Pins</div>
-                        <h6 class="product__title" style="margin: 8px 0; line-height: 1.3; font-size: 0.9rem;">${product.name}</h6>
-                        <p style="font-size: 0.75rem; color: #666; line-height: 1.4; margin: 8px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${product.description || 'Beautiful silk thread saree pin with elegant design. Perfect for securing your saree with traditional style and modern functionality.'}</p>
-                        <div style="margin-top: 10px;">
-                            <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Materials:</strong> ${product.materials || 'Premium silk threads, decorative elements, secure pin mechanism'}</div>
-                            <div style="font-size: 0.7rem; color: #888; margin-bottom: 4px;"><strong>Perfect for:</strong> ${product.occasions || 'Saree styling, Traditional wear, Formal occasions'}</div>
-                            <div style="font-size: 0.7rem; color: #888;"><strong>Care:</strong> ${product.care || 'Keep dry, gentle handling, secure storage'}</div>
-                        </div>
-                        <div style="margin-top: 12px; text-align: center;">
-                            <button onclick="showProductDetails(${product.id})" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                                <i class="fas fa-info-circle"></i> View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            }).join('');
-
-            // Set all HTML at once
-            container.innerHTML = productsHTML;
-            if (typeof gtcFilterPageProducts === "function") {
-                gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
-            }
+            gtcRenderProductGrid(container, products, cardOptions);
         }
 
-        // Function to show product details in a modal
+        async function initPinsPage() {
+            pagePriceData = await gtcLoadStorePriceFile("../data/pins-store-prices.json");
+            await generateProducts();
+        }
+
         function showProductDetails(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
+
+            const storePrice = gtcGetPriceFromData(pagePriceData, product.id);
+            const priceLabel = storePrice != null ? `₹${storePrice}` : "See store for price";
+            const storeUrl = gtcStoreProductUrl(`pins-${product.id}`);
 
             const modalHTML = `
                 <div id="productModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -660,7 +512,8 @@
                       <button onclick="closeProductModal()" style="position: absolute; top: 10px; right: 10px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; cursor: pointer; color: #666; z-index: 1001; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#e0e0e0'; this.style.color='#333';" onmouseout="this.style.background='#f5f5f5'; this.style.color='#666';">&times;</button>
                       <div style="padding: 30px;">
                          <img src="${product.image}" style="width: 100%; max-width: 300px; height: 250px; object-fit: cover; border-radius: 10px; margin: 0 auto 20px; display: block;" alt="${product.name}">
-                         <h2 style="color: #333; margin-bottom: 15px; text-align: center;">${product.name}</h2>
+                         <h2 style="color: #333; margin-bottom: 8px; text-align: center;">${product.name}</h2>
+                         <p style="color: #667eea; font-weight: 600; text-align: center; margin-bottom: 15px;">Pin - ${product.id} · ${priceLabel}</p>
                          <p style="color: #666; line-height: 1.6; margin-bottom: 20px; text-align: center;">${product.description || 'Beautiful silk thread saree pin with elegant design and traditional craftsmanship.'}</p>
 
                          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
@@ -674,7 +527,7 @@
                             <a href="https://wa.me/919360235889?text=Hi! I'm interested in the ${encodeURIComponent(product.name)}. Could you please provide more details and pricing?" target="_blank" style="background: #25D366; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; margin-right: 10px; font-weight: 600;">
                                <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
                             </a>
-                            <a href="https://gayathrithreadcouture.myinstamojo.com/product/pins-${product.id}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
+                            <a href="${storeUrl}" target="_blank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: 600;">
                                <i class="fas fa-shopping-cart"></i> Shop Online
                             </a>
                          </div>
@@ -696,18 +549,16 @@
             }
         }
 
-        // Wait for DOM to be fully loaded
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', generateProducts);
+            document.addEventListener('DOMContentLoaded', initPinsPage);
         } else {
-            generateProducts();
+            initPinsPage();
         }
 
-        // Also ensure it works after window load
         window.addEventListener('load', function () {
             const container = document.getElementById("products-container");
             if (container && !container.innerHTML) {
-                generateProducts();
+                initPinsPage();
             }
         });
     </script>
