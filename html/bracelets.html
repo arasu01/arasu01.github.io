@@ -373,7 +373,7 @@
    </div>
    <!-- announcement section end -->
    <!--header section start -->
-   <div class="header_section">
+   <header class="header_section gtc-sticky-header" id="gtcStickyHeader">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -403,7 +403,7 @@
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <!-- header section end -->
    <!-- category sections start -->
    <div class="bracelet-category-section">
@@ -416,11 +416,20 @@
    </div>
    <div class="category-content-panel" id="category-panel" hidden>
       <div class="shop_section_start layout_padding">
-         <div class="container">
+         <div class="container gtc-page-heading">
             <h1 class="center_text" id="category-title" style="width: 75%; font-size: 2.5rem; line-height: 1.2;"></h1>
+            <div class="gtc-page-toolbar" data-gtc-product-search data-item-label="bracelet" data-grid-selectors="#products-container">
+               <form class="gtc-page-search" role="search" onsubmit="return false;">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                  <input type="search" id="gtcPageSearch" class="gtc-page-search-input" placeholder="Search bracelets by name, color, or occasion…" autocomplete="off" aria-label="Search bracelets on this page">
+                  <button type="button" id="gtcClearSearch" class="gtc-page-search-clear" hidden aria-label="Clear search">Clear</button>
+               </form>
+               <p id="gtcSearchStatus" class="gtc-search-status" aria-live="polite"></p>
+            </div>
          </div>
       </div>
       <div class="grid-container">
+         <div id="gtcNoResults" class="gtc-no-results">No bracelets match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
          <div id="products-container"></div>
       </div>
    </div>
@@ -1323,8 +1332,10 @@
             return getBraceletCategory(product) === category;
          });
 
-         const productsHTML = categoryProducts.map(product => `
-            <div class="product" style="cursor: pointer;" title="Click to view details">
+         const productsHTML = categoryProducts.map(product => {
+            const searchText = gtcBuildProductSearchText(product);
+            return `
+            <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                 <div class="product__top">
                     <div class="product__thumbnail">
                         <img src="${getBraceletImage(product)}"
@@ -1349,10 +1360,14 @@
                     </div>
                 </div>
             </div>
-        `).join('');
+        `;
+         }).join('');
 
          // Set all HTML at once
          container.innerHTML = productsHTML;
+         if (typeof gtcFilterPageProducts === "function") {
+            gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+         }
       }
 
       function getBraceletCategory(product) {
@@ -1459,6 +1474,7 @@
          loadCategory(initialCategory, false, false);
       })();
    </script>
+   <script src="../js/product-page-search.js"></script>
    <script src="../js/shared-page-chrome.js" defer></script>
 
 </body>

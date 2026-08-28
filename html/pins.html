@@ -293,7 +293,7 @@
    </div>
    <!-- announcement section end -->
    <!--header section start -->
-   <div class="header_section">
+   <header class="header_section gtc-sticky-header" id="gtcStickyHeader">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -323,15 +323,24 @@
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <!-- header section end -->
     <div class="shop_section_start layout_padding">
-        <div class="container">
+        <div class="container gtc-page-heading">
             <h1 class="center_text" style="width: 75%">SAREE PINS</h1>
+            <div class="gtc-page-toolbar" data-gtc-product-search data-item-label="pin" data-grid-selectors="#products-container">
+                <form class="gtc-page-search" role="search" onsubmit="return false;">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="search" id="gtcPageSearch" class="gtc-page-search-input" placeholder="Search saree pins by name, color, or occasion…" autocomplete="off" aria-label="Search saree pins on this page">
+                    <button type="button" id="gtcClearSearch" class="gtc-page-search-clear" hidden aria-label="Clear search">Clear</button>
+                </form>
+                <p id="gtcSearchStatus" class="gtc-search-status" aria-live="polite"></p>
+            </div>
         </div>
     </div>
     <!-- pins section start -->
     <div class="grid-container">
+                <div id="gtcNoResults" class="gtc-no-results">No pins match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
         <div id="products-container"></div>
     </div>
     <!-- pins section end -->
@@ -601,8 +610,10 @@
             containerParent.style.maxWidth = window.innerWidth + 'px';
 
             // Generate HTML for all products with enhanced content
-            const productsHTML = products.map(product => `
-                <div class="product" style="cursor: pointer;" title="Click to view details">
+            const productsHTML = products.map(product => {
+                const searchText = gtcBuildProductSearchText(product);
+                return `
+                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                     <div class="product__top">
                         <div class="product__thumbnail">
                             <img src="${product.image}"
@@ -628,10 +639,14 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
 
             // Set all HTML at once
             container.innerHTML = productsHTML;
+            if (typeof gtcFilterPageProducts === "function") {
+                gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+            }
         }
 
         // Function to show product details in a modal
@@ -696,6 +711,7 @@
             }
         });
     </script>
+      <script src="../js/product-page-search.js"></script>
    <script src="../js/shared-page-chrome.js" defer></script>
 
 </body>

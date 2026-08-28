@@ -61,7 +61,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" media="screen">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" type="text/css" href="../css/shared-page-chrome.css">
     <link rel="canonical" href="https://gayathrithreadcouture.in/html/rings.html">
     <script type="application/ld+json">
     {
@@ -118,7 +117,7 @@
             background-color: #218838;
         }
 
-        /* Product Grid Styling - FORCE FULL WIDTH */
+        /* Product Grid Styling - match other product pages */
         body .grid-container,
         html body .grid-container {
             padding: 2rem 0;
@@ -224,6 +223,11 @@
                 padding: 0.5rem !important;
             }
 
+            .gtc-no-results {
+                width: calc(100vw - 1rem);
+                max-width: calc(100vw - 1rem);
+            }
+
             .product__top {
                 height: 120px;
             }
@@ -243,7 +247,9 @@
                 font-size: 0.75rem;
             }
         }
+
         </style>
+    <link rel="stylesheet" type="text/css" href="../css/shared-page-chrome.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4163076031452250"
         crossorigin="anonymous"></script>
     <!-- Meta Pixel Code -->
@@ -292,7 +298,7 @@
    </div>
    <!-- announcement section end -->
    <!--header section start -->
-   <div class="header_section">
+   <header class="header_section gtc-sticky-header" id="gtcStickyHeader">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -322,15 +328,29 @@
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <!-- header section end -->
     <div class="shop_section_start layout_padding">
-        <div class="container">
+        <div class="container gtc-page-heading">
             <h1 class="center_text" style="width: 25%; font-size: 2.5rem; line-height: 1.2;">RINGS</h1>
+            <div class="gtc-page-toolbar" data-gtc-product-search data-item-label="ring" data-grid-selectors="#products-container">
+                <form class="gtc-page-search" role="search" onsubmit="return false;">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="search"
+                        id="gtcPageSearch"
+                        class="gtc-page-search-input"
+                        placeholder="Search rings by name, color, or occasion…"
+                        autocomplete="off"
+                        aria-label="Search rings on this page">
+                    <button type="button" id="gtcClearSearch" class="gtc-page-search-clear" hidden aria-label="Clear search">Clear</button>
+                </form>
+                <p id="gtcSearchStatus" class="gtc-search-status" aria-live="polite"></p>
+            </div>
         </div>
     </div>
     <!-- rings section start -->
     <div class="grid-container">
+        <div id="gtcNoResults" class="gtc-no-results">No rings match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
         <div id="products-container"></div>
     </div>
     <!-- rings section end -->
@@ -769,7 +789,6 @@
                 return;
             }
 
-            // Force full width programmatically to ensure it works
             const containerParent = container.parentElement;
             container.style.width = window.innerWidth + 'px';
             container.style.maxWidth = window.innerWidth + 'px';
@@ -777,8 +796,10 @@
             containerParent.style.maxWidth = window.innerWidth + 'px';
 
             // Generate HTML for all products
-            const productsHTML = products.map(product => `
-                <div class="product" style="cursor: pointer;" title="Click to view details">
+            const productsHTML = products.map(product => {
+                const searchText = gtcBuildProductSearchText(product);
+                return `
+                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                     <div class="product__top">
                         <div class="product__thumbnail">
                             <img src="${product.image}"
@@ -804,10 +825,14 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
 
             // Set all HTML at once
             container.innerHTML = productsHTML;
+            if (typeof gtcFilterPageProducts === "function") {
+                gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+            }
         }
 
         // Function to show product details in a modal
@@ -872,6 +897,7 @@
             }
         });
     </script>
+   <script src="../js/product-page-search.js"></script>
    <script src="../js/shared-page-chrome.js" defer></script>
 
 </body>

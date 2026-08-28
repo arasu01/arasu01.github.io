@@ -44,12 +44,10 @@
       content="Browse our bangles by category — bridal and silk thread collections. Handcrafted jewelry from Gayathri Thread Couture.">
    <!-- bootstrap css -->
    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-   <link rel="stylesheet" href="../css/bootstrap.min.css">
-   <link rel="stylesheet" href="../css/custom.css" />
+<link rel="stylesheet" href="../css/custom.css" />
    <!-- style css -->
    <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <link rel="stylesheet" href="../css/style.css">
-   <!-- Modern Theme CSS -->
+<!-- Modern Theme CSS -->
    <link rel="stylesheet" type="text/css" href="../css/modern-theme.css">
    <!-- Responsive-->
    <link rel="stylesheet" href="../css/responsive.css">
@@ -336,7 +334,7 @@
    </div>
    <!-- announcement section end -->
    <!--header section start -->
-   <div class="header_section">
+   <header class="header_section gtc-sticky-header" id="gtcStickyHeader">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -366,7 +364,7 @@
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <!-- header section end -->
    <!-- category sections start -->
    <div class="bangle-category-section">
@@ -383,6 +381,17 @@
             aria-pressed="false">CASUAL SETS</button>
       </div>
    </div>
+   <div class="container gtc-page-heading" style="padding-bottom: 1rem;">
+      <div class="gtc-page-toolbar" data-gtc-product-search data-item-label="bangle" data-grid-selectors="#products-container-silk,#products-container-bridal" data-item-selector="#products-container-silk .product,#products-container-bridal .product">
+         <form class="gtc-page-search" role="search" onsubmit="return false;">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="search" id="gtcPageSearch" class="gtc-page-search-input" placeholder="Search bangles by name, color, or occasion…" autocomplete="off" aria-label="Search bangles on this page">
+            <button type="button" id="gtcClearSearch" class="gtc-page-search-clear" hidden aria-label="Clear search">Clear</button>
+         </form>
+         <p id="gtcSearchStatus" class="gtc-search-status" aria-live="polite"></p>
+      </div>
+   </div>
+   <div id="gtcNoResults" class="gtc-no-results">No bangles match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
    <div class="category-content-panel" id="category-panel" hidden>
       <div class="category-content" id="panel-bridal" hidden>
          <div class="shop_section_start layout_padding">
@@ -881,8 +890,10 @@
          const container = document.getElementById("products-container-silk");
          if (!container || container.dataset.rendered) return;
 
-         const productsHTML = silkThreadProducts.map(product => `
-             <div class="product" style="cursor: pointer;" title="Click to view details">
+         const productsHTML = silkThreadProducts.map(product => {
+            const searchText = gtcBuildProductSearchText(product);
+            return `
+             <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                  <div class="product__top">
                      <div class="product__thumbnail">
                          <img src="${product.image}"
@@ -908,10 +919,14 @@
                      </div>
                  </div>
              </div>
-         `).join('');
+         `;
+         }).join('');
 
          container.innerHTML = productsHTML;
          container.dataset.rendered = "true";
+         if (typeof gtcFilterPageProducts === "function") {
+            gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+         }
       }
 
       function showSilkThreadProductDetails(productId) {
@@ -1007,8 +1022,10 @@
          const container = document.getElementById("products-container-bridal");
          if (!container || container.dataset.rendered) return;
 
-         const productsHTML = bridalProducts.map(product => `
-             <div class="product" style="cursor: pointer;" title="Click to view details">
+         const productsHTML = bridalProducts.map(product => {
+            const searchText = gtcBuildProductSearchText(product);
+            return `
+             <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                  <div class="product__top">
                      <div class="product__thumbnail">
                          <img src="${product.image}"
@@ -1034,10 +1051,14 @@
                      </div>
                  </div>
              </div>
-         `).join('');
+         `;
+         }).join('');
 
          container.innerHTML = productsHTML;
          container.dataset.rendered = "true";
+         if (typeof gtcFilterPageProducts === "function") {
+            gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+         }
       }
 
       function showBridalProductDetails(productId) {
@@ -1134,6 +1155,7 @@
          loadCategory(initialCategory, true, false);
       })();
    </script>
+   <script src="../js/product-page-search.js"></script>
    <script src="../js/shared-page-chrome.js" defer></script>
 
 

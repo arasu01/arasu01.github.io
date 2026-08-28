@@ -44,12 +44,10 @@
       content="Exquisite Kundan bangles for those who love classic jewelry. Perfect as return gifts for weddings, parties, and events. Exclusively from Gayathri Thread Couture">
    <!-- bootstrap css -->
    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-   <link rel="stylesheet" href="../css/bootstrap.min.css">
-   <link rel="stylesheet" href="../css/custom.css" />
+<link rel="stylesheet" href="../css/custom.css" />
    <!-- style css -->
    <link rel="stylesheet" type="text/css" href="../css/style.css">
-   <link rel="stylesheet" href="../css/style.css">
-   <!-- Modern Theme CSS -->
+<!-- Modern Theme CSS -->
    <link rel="stylesheet" type="text/css" href="../css/modern-theme.css">
    <!-- Responsive-->
    <link rel="stylesheet" href="../css/responsive.css">
@@ -299,7 +297,7 @@
    </div>
    <!-- announcement section end -->
    <!--header section start -->
-   <div class="header_section">
+   <header class="header_section gtc-sticky-header" id="gtcStickyHeader">
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-6 col-lg-2">
@@ -329,16 +327,25 @@
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <!-- header section end -->
    <div class="shop_section_start layout_padding">
-      <div class="container">
+      <div class="container gtc-page-heading">
          <h1 class="center_text" style="width: 85%; font-size: 2.5rem; line-height: 1.2;">HAIR CLIPS</h1>
+         <div class="gtc-page-toolbar" data-gtc-product-search data-item-label="clip" data-grid-selectors="#products-container">
+            <form class="gtc-page-search" role="search" onsubmit="return false;">
+               <i class="fas fa-search" aria-hidden="true"></i>
+               <input type="search" id="gtcPageSearch" class="gtc-page-search-input" placeholder="Search hair clips by name, color, or occasion…" autocomplete="off" aria-label="Search hair clips on this page">
+               <button type="button" id="gtcClearSearch" class="gtc-page-search-clear" hidden aria-label="Clear search">Clear</button>
+            </form>
+            <p id="gtcSearchStatus" class="gtc-search-status" aria-live="polite"></p>
+         </div>
       </div>
    </div>
    <!-- clips section start -->
    <div class="grid-container">
-      <div id="products-container"></div>
+              <div id="gtcNoResults" class="gtc-no-results">No clips match your search. Try a color or occasion, or <a href="products.html">browse all collections</a>.</div>
+        <div id="products-container"></div>
    </div>
    <!-- clips section end -->
    <!-- section footer start -->
@@ -584,8 +591,10 @@
          containerParent.style.maxWidth = window.innerWidth + 'px';
 
          // Generate HTML for all products with enhanced content
-         const productsHTML = products.map(product => `
-             <div class="product" style="cursor: pointer;" title="Click to view details">
+         const productsHTML = products.map(product => {
+                const searchText = gtcBuildProductSearchText(product);
+                return `
+                <div class="product" data-search="${searchText}" style="cursor: pointer;" title="Click to view details">
                  <div class="product__top">
                      <div class="product__thumbnail">
                          <img src="${product.image}"
@@ -611,10 +620,14 @@
                      </div>
                  </div>
              </div>
-         `).join('');
+         `;
+            }).join('');
 
          // Set all HTML at once
          container.innerHTML = productsHTML;
+            if (typeof gtcFilterPageProducts === "function") {
+                gtcFilterPageProducts(document.getElementById("gtcPageSearch")?.value || "");
+            }
       }
 
       // Function to show product details in a modal
@@ -679,6 +692,7 @@
          }
       });
    </script>
+      <script src="../js/product-page-search.js"></script>
    <script src="../js/shared-page-chrome.js" defer></script>
 
 </body>

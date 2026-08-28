@@ -43,6 +43,52 @@
         }
     };
 
-    document.addEventListener("DOMContentLoaded", initEmailObfuscation);
+    function initStickyHeader() {
+        var stickyHeader = document.getElementById("gtcStickyHeader");
+        if (!stickyHeader || stickyHeader.dataset.gtcStickyInit === "true") {
+            return;
+        }
+        stickyHeader.dataset.gtcStickyInit = "true";
+
+        var announcement = document.querySelector(".announcementColor.scrolling-text-container")
+            || document.querySelector(".scrolling-text-container");
+
+        document.body.classList.add("gtc-has-sticky-header");
+
+        var spacer = document.createElement("div");
+        spacer.className = "gtc-header-spacer";
+        spacer.setAttribute("aria-hidden", "true");
+        if (stickyHeader.nextSibling) {
+            stickyHeader.parentNode.insertBefore(spacer, stickyHeader.nextSibling);
+        } else {
+            stickyHeader.parentNode.appendChild(spacer);
+        }
+
+        function updateStickyHeader() {
+            var headerHeight = stickyHeader.offsetHeight;
+            var announcementHeight = announcement ? announcement.offsetHeight : 0;
+            var scrollY = window.scrollY || window.pageYOffset;
+
+            spacer.style.height = headerHeight + "px";
+
+            if (scrollY >= announcementHeight) {
+                stickyHeader.style.top = "0px";
+                stickyHeader.classList.toggle("gtc-scrolled", scrollY > announcementHeight + 8);
+            } else {
+                stickyHeader.style.top = Math.max(0, announcementHeight - scrollY) + "px";
+                stickyHeader.classList.remove("gtc-scrolled");
+            }
+        }
+
+        updateStickyHeader();
+        window.addEventListener("scroll", updateStickyHeader, { passive: true });
+        window.addEventListener("resize", updateStickyHeader);
+        window.addEventListener("load", updateStickyHeader);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initEmailObfuscation();
+        initStickyHeader();
+    });
     window.addEventListener("load", onWindowLoad);
 })();

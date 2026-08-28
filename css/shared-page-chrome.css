@@ -87,3 +87,272 @@
     color: #667eea;
     text-decoration: underline;
 }
+
+/* Sticky site header — fixed positioning (sticky breaks with body overflow-x:hidden) */
+.header_section.gtc-sticky-header {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    width: 100%;
+    float: none !important;
+    z-index: 1050;
+    top: 0;
+    transition: box-shadow 0.25s ease;
+}
+
+.header_section.gtc-sticky-header.gtc-scrolled {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+.gtc-header-spacer {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body.gtc-has-sticky-header {
+    overflow-x: clip;
+}
+
+.gtc-sticky-header .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.gtc-sticky-header .row {
+    align-items: center;
+}
+
+.gtc-sticky-header .col-sm-6.col-lg-10 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gtc-sticky-header .menu_text {
+    width: 100%;
+    float: none;
+    margin-top: 13px;
+    display: block;
+    min-height: 0;
+}
+
+.gtc-sticky-header .menu_text ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gtc-sticky-header .menu_text li {
+    float: none;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+
+.gtc-sticky-header .menu_text li a {
+    font-size: inherit;
+    line-height: 1.4;
+    font-family: inherit;
+}
+
+.gtc-sticky-header .menu_toggle_btn {
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.gtc-sticky-header .toggle_menu {
+    display: block;
+    max-height: 36px;
+    width: auto;
+}
+
+#myNav.overlay {
+    z-index: 1100 !important;
+}
+
+@media (min-width: 992px) {
+    .gtc-sticky-header .row {
+        position: relative;
+    }
+
+    .gtc-sticky-header .col-sm-6.col-lg-2 {
+        position: relative;
+        z-index: 2;
+    }
+
+    .gtc-sticky-header .col-sm-6.col-lg-10 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    .gtc-sticky-header .menu_text {
+        pointer-events: auto;
+    }
+
+    .gtc-sticky-header .menu_text ul {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .gtc-sticky-header .menu_text li {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 991px) {
+    .gtc-sticky-header .col-sm-6.col-lg-10 {
+        justify-content: flex-start;
+    }
+
+    .gtc-sticky-header .menu_text ul {
+        justify-content: flex-start;
+    }
+
+    .gtc-sticky-header .menu_text li {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .gtc-sticky-header .menu_text li a {
+        font-size: inherit;
+    }
+}
+
+/* In-page product catalog search */
+.gtc-page-heading {
+    text-align: center;
+}
+
+.gtc-page-heading .center_text {
+    margin-bottom: 1.25rem;
+}
+
+.gtc-page-toolbar {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.gtc-page-search {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.1);
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.gtc-page-search:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.18);
+}
+
+.gtc-page-search i {
+    color: #667eea;
+    flex-shrink: 0;
+}
+
+.gtc-page-search-input {
+    flex: 1;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: #333;
+    outline: none;
+}
+
+.gtc-page-search-input::placeholder {
+    color: #999;
+}
+
+.gtc-page-search-clear {
+    width: auto !important;
+    padding: 0.25rem 0.65rem !important;
+    font-size: 0.75rem !important;
+    background: #f0f3ff !important;
+    color: #667eea !important;
+    border-radius: 999px !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.gtc-page-search-clear:hover {
+    background: #e0e7ff !important;
+}
+
+.gtc-search-status {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0.5rem 0 0;
+    min-height: 1.1rem;
+}
+
+.gtc-no-results {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: #666;
+    font-size: 1rem;
+    display: none;
+    background: #fff;
+    width: calc(100vw - 4rem);
+    max-width: calc(100vw - 4rem);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.gtc-no-results.is-visible {
+    display: block;
+}
+
+.gtc-no-results a {
+    color: #667eea;
+}
+
+.gtc-grid-hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .gtc-page-toolbar {
+        max-width: none;
+        padding: 0 0.5rem;
+    }
+
+    .gtc-no-results {
+        width: calc(100vw - 1rem);
+        max-width: calc(100vw - 1rem);
+    }
+}
